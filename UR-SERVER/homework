@@ -1,0 +1,10 @@
+menus fields
+
+id-->primary key
+menu_name--> --menu
+menu_description-->manage menus
+menu_url-->text -- /menu
+menu_code-->text --menucode
+
+created_by-->user_id
+created_on-->timestamp
