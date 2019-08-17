@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 // import validator from "validator";
 
-const menuSchema = new mongoose.Schema({
-  menu_name: {
+const userSchema = new mongoose.Schema({
+  user_name: {
     type: String,
     required: true,
     validate(value) {
@@ -12,23 +12,28 @@ const menuSchema = new mongoose.Schema({
     }
   },
 
-  menu_description: {
+  email: {
     type: String,
     required: true
   },
 
-  menu_url: {
+  password: {
     type: String,
     required: true
   },
 
-  menu_code: {
+  role_code: {
+    type: String,
+    required: true
+  },
+
+  user_code: {
     type: Number,
     required: true
   },
 
   created_by: {
-    type: String,
+    type: Number,
     required: true
   },
 
@@ -38,4 +43,4 @@ const menuSchema = new mongoose.Schema({
   }
 });
 
-export const Menu = mongoose.model("menuslist", menuSchema);
+export const Users = mongoose.model("Users", userSchema);

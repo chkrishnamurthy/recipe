@@ -27,4 +27,15 @@ role_
 
 
 
+inputs for menu_description
+
+albumname,
+fileid
+
+
+
+file Id   
+filename,
+path,
+
 
