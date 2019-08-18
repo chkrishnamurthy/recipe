@@ -2,6 +2,8 @@
 import { Router } from "express";
 import menu from "../controllers/menus";
 import * as user from "../controllers/users";
+import * as role from "../controllers/roles";
+import * as menuaction from "../controllers/menus_role_action_table_Controller";
 
 export const router = Router();
 
@@ -16,8 +18,21 @@ router.route("/api/users").get(user.list);
 router.route("/api/users").post(user.add);
 router.route("/api/users/:user_code").delete(user.deleteBy_MenuCode);
 router.route("/api/users/:user_code").get(user.findByUserCode);
+router.route("/api/users/:user_code").patch(user.updateBy_MenuCode);
+router.route("/login").get(user.login);
 
-router.route("/login").post(user.login);
+
+// Roles Routes
+router.route("/api/roles").post(role.add);
+router.route("/api/roles").get(role.list);
+router.route("/api/roles/:role_code").delete(role.deleteBy_RoleCode);
+router.route("/api/roles/:role_code").get(role.findByRoleCode);
+router.route("/api/roles/:role_code").patch(role.updateBy_RoleCode);
+
+// Menu Action Routes
+router.route("/api/menuaction").post(menuaction.add);
+router.route("/api/menuaction").get(menuaction.list);
+router.route("/api/menuaction/:role_id").delete(menuaction.DeleteById);
+router.route("/api/menuaction/:role_id").patch(menuaction.updateBy_RoleCode);
 
 
-// router.route("/api/users/:user_code").patch(user.updateByCode

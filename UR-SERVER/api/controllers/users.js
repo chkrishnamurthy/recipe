@@ -1,6 +1,6 @@
 import model from "../model";
 import { ERROR, SUCCESS, STATUS_CODE } from "../config/data/message";
-import { privateKey } from "../config/data/secure";
+import { privatekey } from "../config/data/secure";
 import jwt from "jsonwebtoken";
 
 const { Users } = model;
@@ -71,40 +71,45 @@ export const findByUserCode = async (req, res) => {
   }
 };
 
-// export const updateByCode = async (req,res) =>{
-//     const updates = Object.keys(req.body)
-//     const allowedUpdates = ['user_name', 'email', 'password']
-//     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+export const updateBy_MenuCode = async (req,res) =>{
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ['user_name', 'email', 'password']
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 
-//     if (!isValidOperation) {
-//         return res.status(400).send({ error: 'Invalid updates!' })
-//     }
+    console.log(isValidOperation)
+    console.log(updates)
 
-//     try {
-//         const userobj = await user.findOneAndUpdate({ user_code: +req.params.user_code }, req.body, { new: true, runValidators: true })
-//         console.log("user", userobj);
-//         if (!userobj) {
-//             return res.status(404).send()
-//         }
+    if (!isValidOperation) {
+        return res.status(400).send({ error: 'Invalid updates!' })
+    }
 
-//         res.send(userobj)
-//     } catch (e) {
-//         console.log("check error", e);
-//         res.status(400).send(e)
-//     }
-// }
+    try {
+        const userobj = await Users.findOneAndUpdate({ user_code: +req.params.user_code }, req.body, { new: true, runValidators: true })
+        console.log("user", userobj);
+        if (!userobj) {
+            return res.status(404).send()
+        }
+
+        res.send(userobj)
+    } catch (e) {
+        console.log("check error", e);
+        res.status(400).send(e)
+    }
+}
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
-  console.log({ email, password });
+  console.log(email, password);
 
   try {
     const userobj = await Users.findOne({'email':email,'password':password});
     if (!userobj) {
       return res.status(404).send();
     }
-    const payload = { email, password };
-    const token = jwt.sign(payload, privateKey);
+    const logincredintails = { email, password };
+    console.log("guru", logincredintails);
+    console.log(privatekey, jwt);
+    const token = jwt.sign(logincredintails, privatekey);
     console.log(token);
 
     res.status(STATUS_CODE.OK).send({
@@ -114,6 +119,7 @@ export const login = async (req, res) => {
       token
     });
   } catch (e) {
+    console.log("gocha error");
     res.status(500).send(e);
   }
 };
