@@ -52,10 +52,6 @@ class menuControllerClass{
            // const menu = await
     return Menu.findOneAndUpdate({menu_code},{ menu_name })
         .then(menuData =>res.status(204).send({ success: true, message: "Menu Updated ", menuData })).catch(error => res.status(400).send(error))
-     // return res.status(204).send(menu);
-
-    
-
 
 }
 
@@ -64,6 +60,3 @@ class menuControllerClass{
 
 
 export default menuControllerClass;
-
-// export const list = (req,res)=>{console.log("murthy")};
-// export const list = (req,res)=>{console.log("murthy")};

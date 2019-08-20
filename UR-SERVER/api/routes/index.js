@@ -19,7 +19,7 @@ router.route("/api/users").post(user.add);
 router.route("/api/users/:user_code").delete(user.deleteBy_MenuCode);
 router.route("/api/users/:user_code").get(user.findByUserCode);
 router.route("/api/users/:user_code").patch(user.updateBy_MenuCode);
-router.route("/login").get(user.login);
+router.route("/login").post(user.login);
 
 
 // Roles Routes

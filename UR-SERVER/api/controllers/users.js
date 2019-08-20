@@ -115,7 +115,7 @@ export const login = async (req, res) => {
     res.status(STATUS_CODE.OK).send({
       success: true,
       message: SUCCESS.VALID_USER,
-      // userobj,
+      userobj,
       token
     });
   } catch (e) {
