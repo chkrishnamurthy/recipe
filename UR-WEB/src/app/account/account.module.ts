@@ -4,11 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { AccountRoutingModule } from './account-routing.module';
 import { LoginComponent } from './login/login.component';
-import { MenusComponent } from './menus/menus.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, MenusComponent],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
     AccountRoutingModule,
