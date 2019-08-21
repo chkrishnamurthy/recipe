@@ -10,7 +10,7 @@
       <hr class="sidebar-divider">
 
       <div class="sidebar-heading">
-        <b>Interface</b>
+        <b>Menus Names</b>
       </div>
 
       <li class="nav-item">
@@ -41,21 +41,26 @@
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <li class="nav-item dropdown no-arrow">
-              
-
-              <a   class="nav-link dropdown-toggle"  data-toggle="modal">
+             <a class="nav-link dropdown-toggle"  data-toggle="modal">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" data-toggle="modal"
                   data-target="#changepassword"><b>Change Password</b></span>
               </a>
-
-              
-
           </ul>
         </nav>
 
         <div class="container-fluid">
-          <h1 class="h3 mb-4 text-gray-800">Menus Table</h1>
+            <div class="row">
+          <h1 class="h3 mb-4 text-gray-800">Menus Table</h1>&nbsp;&nbsp;
+          <div class="alert alert-primary col-sm-6" role="alert" *ngIf="success_Message" >
+           One Menu Record Added Successfully....!
+          </div>
 
+          <div class="alert alert-danger col-sm-6" role="alert"  *ngIf ="deleted_message">
+              Deleted Successfully
+             </div>
+
+
+        </div>     
         </div>
 
         <div class="container">
@@ -70,8 +75,7 @@
                 
                   <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
                       class="material-icons">&#xE147;</i> <span>Add New Menu</span></a>
-                  <a href="#" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i>
-                    <span>Delete</span></a>
+          
                 </div>
               </div>
             </div>
@@ -86,14 +90,12 @@
                   </th>
                   <th>S.No</th>
                   <th>Menu Name</th>
-                  <th>Created By</th>
-                  <th>Menu_url</th>
-                  <th>Menu_Code</th>
-                  <th>Menu_Description</th>
+                  <th>Menu Code</th>
+                  <th>Menu Url</th>
+                  <th>Menu Description</th>
+                  <th>Menu Created By</th>
                   <th>Actions</th>
 
-
-<!-- <h1 *ngFor="let a of menus">{{a.menu_name}}</h1> -->
                 </tr>
               </thead>
               <tbody>
@@ -112,7 +114,7 @@
                   <td>{{menu.created_by}}</td>
 
                   <td>
-                    <a  class="edit"><i class="material-icons">&#xE254;</i></a>
+                    <a  class="edit" href="#Edit_Menu_Modal" data-toggle="modal" (click)="edit_Menu_Record(menu._id,i)"><i class="material-icons">&#xE254;</i></a>
                     <a  class="delete" (click)="delete_Menu_Record(menu._id)" ><i class="material-icons" title="Delete" >&#xE872;</i></a>
                   </td>
                 </tr>
@@ -136,6 +138,9 @@
           </div>
         </div>
 
+        
+      
+
 
         <!-- Edit Modal HTML -->
        
@@ -144,12 +149,63 @@
               <div class="modal-content">             
                   <div class="modal-header">
                     <h2 class="modal-title">Create Menu</h2>
-                    <button type="button" class="close" data-dismiss="modal" (click)="close()" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal"  aria-hidden="true">&times;</button>
                   </div>
                   <!--Header-->
                   <div class="modal-body">
                 
-                      <form [formGroup]="menu_add_form" (ngSubmit)="onSubmit()">
+                      <form [formGroup]="menu_add_form" (ngSubmit)="onSubmit();myForm.reset()" #myForm="ngForm">
+                    
+                          <!--Menu name-->
+                           <div class="form-group">
+                               <label >Menu Name</label>
+                               <input type="text" formControlName="menu_name" class="form-control"  />
+                            
+                           </div>
+
+                           <div class="form-group">
+                              <label>menu_code</label>
+                              <input type="text" formControlName="menu_code" class="form-control"  />
+                            
+                          </div>
+
+
+                          <div class="form-group">
+                              <label>menu_description</label>
+                              <input type="text" formControlName="menu_description" class="form-control"  />
+                          
+                          </div>
+
+
+                          <div class="form-group">
+                              <label >menu_url</label>
+                              <input type="text" formControlName="menu_url" class="form-control"  />
+                       
+                          </div>
+
+                                            
+                           <input type="button"  class="btn btn-default" data-dismiss="modal" value="Cancel">
+                          <input type="submit" class="btn btn-success" value="Add"  >
+                      </form>
+              
+                </div>
+               
+              </div>
+            </div>
+          </div>
+
+        
+          <div id="Edit_Menu_Modal" class="modal fade">
+            <div class="modal-dialog" data-target="#modal">
+              <div class="modal-content">             
+                  <div class="modal-header">
+                    <h2 class="modal-title">Edit Menu</h2>
+                    <button type="button" class="close" data-dismiss="modal"  aria-hidden="true">&times;</button>
+                  </div>
+                  <!--Header-->
+                  <div class="modal-body">
+                
+                      <form [formGroup]="menu_add_form">
                     
                           <!--Menu name-->
                            <div class="form-group">
@@ -180,34 +236,23 @@
 
 
 
-                          <div class="form-group">
-                              <label >created_by</label>
-                              <input type="text" formControlName="created_by" class="form-control"  />
-                         
-                          </div>
-
 
                                             
                            <input type="button"  class="btn btn-default" data-dismiss="modal" value="Cancel">
-                          <input type="submit" class="btn btn-success" value="Add">
+                          <input type="submit" class="btn btn-success"  (click)="edit_Submit()">
                       </form>
-                      
-
-
-
+                
 
                 </div>
-                  <!--Footer-->
                   <div class="modal-footer">    
                     <p>{{message}}</p>             
+                  
                   </div>
-                
+
+                 
               </div>
             </div>
           </div>
-
-          
-
 
       </div>
 
@@ -215,7 +260,7 @@
 
   </div>
 
-
+  
 
   <!-- Logout Modal-->
  

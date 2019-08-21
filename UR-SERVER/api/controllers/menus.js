@@ -23,9 +23,9 @@ class menuControllerClass{
      }
      
      static async update(req,res){
-          const { id } = req.params;
-          // const { menu_name, menu_description, menu_url, menu_code,created_by,created_on } = req.body;
-          const menu = await Menu.findByIdAndUpdate(id,req.body);
+          const { _id } = req.params;
+          // const { menu_name, menu_description, menu_url, menu_code,created_by } = req.body;
+          const menu = await Menu.findByIdAndUpdate(_id,req.body);
           //  menu.remove();
           return res.status(204).send(menu);
      }
@@ -45,15 +45,15 @@ class menuControllerClass{
      //      return res.status(204).send(menu);
      // }
 
-     static async updateBy_MenuCode(req,res){
-          const { menu_code } = req.params;
-          const { menu_name } = req.body;
-          console.log(menu_code);
-           // const menu = await
-    return Menu.findOneAndUpdate({menu_code},{ menu_name })
-        .then(menuData =>res.status(204).send({ success: true, message: "Menu Updated ", menuData })).catch(error => res.status(400).send(error))
+//      static async updateBy_MenuCode(req,res){
+//           const { menu_code } = req.params;
+//           const { menu_name } = req.body;
+//           console.log(menu_code);
+//            // const menu = await
+//     return Menu.findOneAndUpdate({menu_code},{ menu_name })
+//         .then(menuData =>res.status(204).send({ success: true, message: "Menu Updated ", menuData })).catch(error => res.status(400).send(error))
 
-}
+// }
 
 
 }

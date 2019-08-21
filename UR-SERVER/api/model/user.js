@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
   },
 
   created_by: {
-    type: Number,
+    type: String,
     required: true
   },
 

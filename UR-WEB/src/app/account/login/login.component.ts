@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
                 if (this.loginService.currentUserValue) {
                   this.router.navigate(['/']);
+                  // console.log(this.loginService.currentUserValue)
               }
    }
   
