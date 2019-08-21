@@ -10,7 +10,8 @@ export const router = Router();
 // Menus Routes
 router.route("/api/menus").post(menu.add);
 router.route("/api/menus").get(menu.list);
-router.route("/api/menus/:menu_code").delete(menu.deleteBy_MenuCode);
+router.route("/api/menus/:_id").delete(menu.deleteId);
+// router.route("/api/menus/:menu_code").delete(menu.deleteBy_MenuCode);
 router.route("/api/menus/:menu_code").patch(menu.updateBy_MenuCode);
 
 // Users Routes

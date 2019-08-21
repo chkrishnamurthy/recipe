@@ -8,6 +8,7 @@ import { LoginService } from '../service/login.service'
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"]
 })
+
 export class LoginComponent implements OnInit {
 
   
@@ -40,7 +41,8 @@ export class LoginComponent implements OnInit {
      .subscribe(
          data => {
             console.log("Check user data", data);
-            this.router.navigate([this.returnUrl]);
+            this.router.navigate(["/menus"]);
+            // this.returnUrl
          },
          error => {
             console.log("ERROR user data:", error);

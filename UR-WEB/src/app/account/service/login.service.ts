@@ -8,24 +8,21 @@ import { User } from "../models";
   providedIn: "root"
 })
 export class LoginService {
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
 
-  private currentUserSubject:BehaviorSubject<User>;
-  public currentUser:Observable<User>
-  
-constructor(private http:HttpClient){
-  this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-  this.currentUser = this.currentUserSubject.asObservable();
-}
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(
+      JSON.parse(localStorage.getItem("currentUser"))
+    );
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
 
-public get currentUserValue():User{
-  return this.currentUserSubject.value;
-}
-
-
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
 
   login(email, password) {
-       
-    
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-type": "Application/json"
@@ -37,14 +34,14 @@ public get currentUserValue():User{
     return this.http.post<any>(url, { email, password }, httpOptions).pipe(
       map(user => {
         localStorage.setItem("currentUser", JSON.stringify(user));
-         this.currentUserSubject.next(user);
+        this.currentUserSubject.next(user);
         return user;
       })
     );
   }
 
-  // logout() {
-  //   localStorage.removeItem('currentUser');
-  //   this.currentUserSubject.next(null);
-  // }
+  logout() {
+    localStorage.removeItem("currentUser");
+    this.currentUserSubject.next(null);
+  }
 }

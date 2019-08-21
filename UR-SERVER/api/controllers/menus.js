@@ -16,11 +16,11 @@ class menuControllerClass{
           return Menu.find({}).then(menuData =>res.status(200).send({ success: true, message: "Menu List ", menuData })).catch(error => res.status(400).send(error))
      }
 
-     // static async deleteId(req,res){
-     //      const { menu_code } = req.params;
-     //      const menu = await Menu.findByIdAndRemove(menu_code);
-     //      return res.status(204).send(menu);
-     // }
+     static async deleteId(req,res){
+          const { _id } = req.params;
+          const menu = await Menu.findByIdAndRemove(_id);
+          return res.status(204).send(menu);
+     }
      
      static async update(req,res){
           const { id } = req.params;
@@ -38,12 +38,12 @@ class menuControllerClass{
      //      return res.status(204).send({menu});
      // }
 
-     static async deleteBy_MenuCode(req,res){
-          const { menu_code } = req.params;
-          const menu = await Menu.findOneAndRemove({menu_code});
+     // static async deleteBy_MenuCode(req,res){
+     //      const { menu_code } = req.params;
+     //      const menu = await Menu.findOneAndRemove({menu_code});
           
-          return res.status(204).send(menu);
-     }
+     //      return res.status(204).send(menu);
+     // }
 
      static async updateBy_MenuCode(req,res){
           const { menu_code } = req.params;
