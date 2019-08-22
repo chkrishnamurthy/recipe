@@ -105,7 +105,7 @@ export const updateBy_MenuCode = async (req, res) => {
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
+  // console.log(email, password);
 
   try {
     const userobj = await Users.findOne({ email: email, password: password });
@@ -114,7 +114,9 @@ export const login = async (req, res) => {
     }
     const logincredintails = { email, password };
     const token = jwt.sign(logincredintails, privatekey);
+
     const defaultUrl = (userobj.role_code == "user") ? "admin" : "/recipe/";
+    
     console.log(defaultUrl);
 
     res.status(STATUS_CODE.OK).send({

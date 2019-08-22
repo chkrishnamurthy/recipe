@@ -39,19 +39,26 @@ export const add = (req, res) => {
     .catch(error => res.status(400).send(error));
 };
 
-export const deleteBy_RoleCode = (req, res) => {
-  Roles.findOneAndRemove({ role_code: req.params.role_code }).then(
-    deletedRole =>
-      res
-        .status(STATUS_CODE.OK)
-        .send({
-          success: true,
-          message: SUCCESS.USER_DELETED,
-          deletedRole
-        })
-        .catch(error => res.status(400).send(error))
-  );
-};
+// export const deleteBy_RoleCode = (req, res) => {
+//   Roles.findOneAndRemove({ role_code: req.params.role_code }).then(
+//     deletedRole =>
+//       res
+//         .status(STATUS_CODE.OK)
+//         .send({
+//           success: true,
+//           message: SUCCESS.USER_DELETED,
+//           deletedRole
+//         })
+//         .catch(error => res.status(400).send(error))
+//   );
+// };
+
+export const deleteById = async (req, res) => {
+    const { _id } = req.params;
+  const deletedrole = await Roles.findByIdAndRemove(_id);
+  return res.status(204).send(deletedrole);
+}
+
 
 export const findByRoleCode = async (req, res) => {
   const role_code = req.params.role_code;
@@ -92,6 +99,12 @@ export const updateBy_RoleCode = async (req,res) =>{
         console.log("check error", e);
         res.status(400).send(e)
     }
+}
+
+export const updateBy_Id = async (req,res) =>{
+    const { _id } = req.params;
+  const updatedRole = await Roles.findByIdAndUpdate(_id,req.body);
+  return res.status(204).send(updatedRole);
 }
 
 

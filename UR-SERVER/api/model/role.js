@@ -18,7 +18,7 @@ const roleSchema = new mongoose.Schema({
   },
 
   created_by: {
-    type: Number,
+    type: String,
     required: true
   },
 

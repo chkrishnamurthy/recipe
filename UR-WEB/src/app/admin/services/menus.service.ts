@@ -8,9 +8,9 @@ import { LoginService } from '../../account/service/login.service';
   providedIn: "root"
 })
 export class MenusService {
+ 
   current_User;
   constructor(public http: HttpClient,private loginService:LoginService) {
-    // 
   this.current_User =  this.loginService.currentUserValue.userobj.user_name;
   // console.log(this.current_User)
   }

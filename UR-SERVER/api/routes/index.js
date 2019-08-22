@@ -27,9 +27,11 @@ router.route("/login").post(user.login);
 // Roles Routes
 router.route("/api/roles").post(role.add);
 router.route("/api/roles").get(role.list);
-router.route("/api/roles/:role_code").delete(role.deleteBy_RoleCode);
+// router.route("/api/roles/:role_code").delete(role.deleteBy_RoleCode);
+router.route("/api/roles/:_id").delete(role.deleteById);
 router.route("/api/roles/:role_code").get(role.findByRoleCode);
-router.route("/api/roles/:role_code").patch(role.updateBy_RoleCode);
+// router.route("/api/roles/:role_code").patch(role.updateBy_RoleCode);
+router.route("/api/roles/:_id").patch(role.updateBy_Id);
 
 // Menu Action Routes
 router.route("/api/menuaction").post(menuaction.add);
