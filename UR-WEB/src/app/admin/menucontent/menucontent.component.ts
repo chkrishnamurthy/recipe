@@ -42,6 +42,7 @@ export class MenucontentComponent implements OnInit {
       this.menusService.delete(_id).pipe(first()).subscribe(data=>{
 
         this.deleted_message = false;
+        this.success_Message = false;
       let clear_Message = setInterval(()=>{
        this.deleted_message = true;
       })
@@ -92,7 +93,7 @@ export class MenucontentComponent implements OnInit {
       menu_url: [menu_Field.menu_url, Validators.required],
       created_by: [menu_Field.created_by, Validators.required]
     });
-    
+   
   }
 
   edit_Submit(){

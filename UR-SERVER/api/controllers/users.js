@@ -44,19 +44,25 @@ export const add = (req, res) => {
     .catch(error => res.status(400).send(error));
 };
 
-export const deleteBy_MenuCode = (req, res) => {
-  Users.findOneAndRemove({ user_code: req.params.user_code }).then(
-    deletedUser =>
-      res
-        .status(STATUS_CODE.OK)
-        .send({
-          success: true,
-          message: SUCCESS.USER_DELETED,
-          deletedUser
-        })
-        .catch(error => res.status(400).send(error))
-  );
-};
+// export const deleteBy_MenuCode = (req, res) => {
+//   Users.findOneAndRemove({ user_code: req.params.user_code }).then(
+//     deletedUser =>
+//       res
+//         .status(STATUS_CODE.OK)
+//         .send({
+//           success: true,
+//           message: SUCCESS.USER_DELETED,
+//           deletedUser
+//         })
+//         .catch(error => res.status(400).send(error))
+//   );
+// };
+
+export const deleteById = async (req, res) => {
+  const { _id } = req.params;
+const deletedrole = await Users.findByIdAndRemove(_id);
+return res.status(204).send(deletedrole);
+}
 
 export const findByUserCode = async (req, res) => {
   const user_code = req.params.user_code;
@@ -71,37 +77,44 @@ export const findByUserCode = async (req, res) => {
   }
 };
 
-export const updateBy_MenuCode = async (req, res) => {
-  const updates = Object.keys(req.body);
-  const allowedUpdates = ["user_name", "email", "password"];
-  const isValidOperation = updates.every(update =>
-    allowedUpdates.includes(update)
-  );
+// export const updateBy_MenuCode = async (req, res) => {
+//   const updates = Object.keys(req.body);
+//   const allowedUpdates = ["user_name", "email", "password"];
+//   const isValidOperation = updates.every(update =>
+//     allowedUpdates.includes(update)
+//   );
 
-  console.log(isValidOperation);
-  console.log(updates);
+//   console.log(isValidOperation);
+//   console.log(updates);
 
-  if (!isValidOperation) {
-    return res.status(400).send({ error: "Invalid updates!" });
-  }
+//   if (!isValidOperation) {
+//     return res.status(400).send({ error: "Invalid updates!" });
+//   }
 
-  try {
-    const userobj = await Users.findOneAndUpdate(
-      { user_code: +req.params.user_code },
-      req.body,
-      { new: true, runValidators: true }
-    );
-    console.log("user", userobj);
-    if (!userobj) {
-      return res.status(404).send();
-    }
+//   try {
+//     const userobj = await Users.findOneAndUpdate(
+//       { user_code: +req.params.user_code },
+//       req.body,
+//       { new: true, runValidators: true }
+//     );
+//     console.log("user", userobj);
+//     if (!userobj) {
+//       return res.status(404).send();
+//     }
 
-    res.send(userobj);
-  } catch (e) {
-    console.log("check error", e);
-    res.status(400).send(e);
-  }
-};
+//     res.send(userobj);
+//   } catch (e) {
+//     console.log("check error", e);
+//     res.status(400).send(e);
+//   }
+// };
+
+export const updateBy_Id = async (req,res) =>{
+  const { _id } = req.params;
+const updatedRole = await Users.findByIdAndUpdate(_id,req.body);
+return res.status(204).send(updatedRole);
+}
+
 
 export const login = async (req, res) => {
   const { email, password } = req.body;

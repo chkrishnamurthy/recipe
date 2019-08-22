@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MenucontentComponent } from './menucontent/menucontent.component';
 import { RolescontentComponent } from './rolescontent/rolescontent.component';
+import { UserscontentComponent } from './userscontent/userscontent.component';
 
 const routes: Routes = [
   {
@@ -34,7 +35,15 @@ const routes: Routes = [
   component:RolescontentComponent,
   outlet:"rolecontent"
 
-}]
+},
+
+{
+  path:"",
+  component:UserscontentComponent,
+  outlet:"usercontent"
+
+}
+]
  }
 
 //  {

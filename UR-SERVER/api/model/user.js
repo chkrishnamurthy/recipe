@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
   },
 
   user_code: {
-    type: Number,
+    type: String,
     required: true
   },
 
