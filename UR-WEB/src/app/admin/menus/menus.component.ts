@@ -94,21 +94,27 @@ export class MenusComponent implements OnInit {
   }
 
   edit_Submit(){
-    
-
-    this.menusService
+        this.menusService
       .edit(this.edit_Id,this.menu_add_form.value)
       .pipe(first())
       .subscribe(
         data => {
           console.log("Updated");
+          this.getMenusdata();
+          
+          this.success_Message = true;
+         let clear_Message = setInterval(()=>{
+          this.success_Message = true;
+         })
+         setTimeout(()=>{
+          clearInterval(clear_Message)
+          this.success_Message = false;
+         },5000)
         },
         error => {
           console.log("Error=> ", error);
         }
       );
-
-    // this.menusService.edit(edit_Id,this.menu_add_form)
   }
 
 

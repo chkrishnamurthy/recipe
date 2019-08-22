@@ -50,9 +50,9 @@
 
         <div class="container-fluid">
             <div class="row">
-          <h1 class="h3 mb-4 text-gray-800">Menus Table</h1>&nbsp;&nbsp;
+          <h1 class="h3 mb-4 text-gray-800">&nbsp; Menus Table</h1>&nbsp;&nbsp;
           <div class="alert alert-primary col-sm-6" role="alert" *ngIf="success_Message" >
-           One Menu Record Added Successfully....!
+           One Menu Record Submitted Successfully....!
           </div>
 
           <div class="alert alert-danger col-sm-6" role="alert"  *ngIf ="deleted_message">
@@ -115,7 +115,7 @@
 
                   <td>
                     <a  class="edit" href="#Edit_Menu_Modal" data-toggle="modal" (click)="edit_Menu_Record(menu._id,i)"><i class="material-icons">&#xE254;</i></a>
-                    <a  class="delete" (click)="delete_Menu_Record(menu._id)" ><i class="material-icons" title="Delete" >&#xE872;</i></a>
+                    <a  class="delete" (click)="delete_Menu_Record(menu._id)"  ><i class="material-icons" title="Delete" >&#xE872;</i></a>
                   </td>
                 </tr>
               
@@ -185,7 +185,7 @@
 
                                             
                            <input type="button"  class="btn btn-default" data-dismiss="modal" value="Cancel">
-                          <input type="submit" class="btn btn-success" value="Add"  >
+                          <input type="submit" class="btn btn-success" value="Add"   >
                       </form>
               
                 </div>
@@ -239,7 +239,7 @@
 
                                             
                            <input type="button"  class="btn btn-default" data-dismiss="modal" value="Cancel">
-                          <input type="submit" class="btn btn-success"  (click)="edit_Submit()">
+                          <input type="submit" class="btn btn-success"  (click)="edit_Submit()" data-dismiss="modal">
                       </form>
                 
 
