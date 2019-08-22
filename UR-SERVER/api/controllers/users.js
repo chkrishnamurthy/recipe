@@ -71,52 +71,59 @@ export const findByUserCode = async (req, res) => {
   }
 };
 
-export const updateBy_MenuCode = async (req,res) =>{
-    const updates = Object.keys(req.body)
-    const allowedUpdates = ['user_name', 'email', 'password']
-    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+export const updateBy_MenuCode = async (req, res) => {
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ["user_name", "email", "password"];
+  const isValidOperation = updates.every(update =>
+    allowedUpdates.includes(update)
+  );
 
-    console.log(isValidOperation)
-    console.log(updates)
+  console.log(isValidOperation);
+  console.log(updates);
 
-    if (!isValidOperation) {
-        return res.status(400).send({ error: 'Invalid updates!' })
+  if (!isValidOperation) {
+    return res.status(400).send({ error: "Invalid updates!" });
+  }
+
+  try {
+    const userobj = await Users.findOneAndUpdate(
+      { user_code: +req.params.user_code },
+      req.body,
+      { new: true, runValidators: true }
+    );
+    console.log("user", userobj);
+    if (!userobj) {
+      return res.status(404).send();
     }
 
-    try {
-        const userobj = await Users.findOneAndUpdate({ user_code: +req.params.user_code }, req.body, { new: true, runValidators: true })
-        console.log("user", userobj);
-        if (!userobj) {
-            return res.status(404).send()
-        }
-
-        res.send(userobj)
-    } catch (e) {
-        console.log("check error", e);
-        res.status(400).send(e)
-    }
-}
+    res.send(userobj);
+  } catch (e) {
+    console.log("check error", e);
+    res.status(400).send(e);
+  }
+};
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
 
   try {
-    const userobj = await Users.findOne({'email':email,'password':password});
+    const userobj = await Users.findOne({ email: email, password: password });
     if (!userobj) {
       return res.status(404).send();
     }
     const logincredintails = { email, password };
-    console.log("guru", logincredintails);
-    console.log(privatekey, jwt);
     const token = jwt.sign(logincredintails, privatekey);
-    console.log(token);
+    const defaultUrl = (userobj.role_code == "user") ? "admin" : "/recipe/";
+    console.log(defaultUrl);
 
     res.status(STATUS_CODE.OK).send({
       success: true,
       message: SUCCESS.VALID_USER,
       userobj,
-      token
+      token,
+      defaultUrl
+
     });
   } catch (e) {
     console.log("gocha error");

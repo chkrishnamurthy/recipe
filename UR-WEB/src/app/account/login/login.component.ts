@@ -40,11 +40,10 @@ export class LoginComponent implements OnInit {
  
     this.loginService.login(this.email,this.password).pipe(first())
      .subscribe(
-         data => {
-            console.log("Check user data", data);
-            this.router.navigate(["/menus"]);
-            // this.returnUrl
-         },
+         userData => {
+            console.log("Check user data", userData);
+            this.router.navigate(["/"+userData.defaultUrl]);
+       },
          error => {
             console.log("ERROR user data:", error);
             this.loading = false;
