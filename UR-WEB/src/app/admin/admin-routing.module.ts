@@ -2,34 +2,44 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MenusComponent } from './menus/menus.component';
 import { AdminComponent } from './admin/admin.component';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MenucontentComponent } from './menucontent/menucontent.component';
 
 const routes: Routes = [
   {
     path:'admin',
   component:AdminComponent,
 
-//   children:[
-//   {
-//   path:"",
-//   component:AdminComponent,
-//   outlet:"header"
-// },
-// {
-//   path:"",
-//   component:AdminComponent,
-//   outlet:"sidemenu"
+  children:[
+  {
+  path:"",
+  component:HeaderComponent,
+  outlet:"header"
+},
+{
+  path:"",
+  component:SidebarComponent,
+  outlet:"sidebar"
+},
+{
+  path:"",
+  component:MenucontentComponent,
+  outlet:"menucontent"
 
-// },
-// {
-//   path:"",
-//   component:AdminComponent,
-//   outlet:"content"
+}]
+ },
 
-// }
-// ]
+ {
+  path:'menus',
+component:MenusComponent,
+
+ }
 
 
-  }
+
+
+ 
 ];
 
 @NgModule({

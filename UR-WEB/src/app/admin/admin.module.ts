@@ -7,10 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MenucontentComponent } from './menucontent/menucontent.component';
 
 
 @NgModule({
-  declarations: [MenusComponent, AdminComponent, HeaderComponent],
+  declarations: [MenusComponent, AdminComponent, HeaderComponent, SidebarComponent, MenucontentComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
