@@ -12,7 +12,7 @@ export class RolesService {
   url="http://127.0.0.1:5003/api/roles";
 
   constructor(private http: HttpClient,private loginService:LoginService) { 
-    this.current_User =  this.loginService.currentUserValue.userobj.user_name;
+    // this.current_User =  this.loginService.currentUserValue.userobj.user_name;
   } 
 
   getRoles(): Observable<any> {
@@ -24,7 +24,7 @@ add(role){
   const RolesData = {
     role_name:role.role_name,
     role_code:role.role_code,
-    created_by:this.current_User
+    created_by:"test2"
   }
   return this.http.post(this.url,RolesData);
 }

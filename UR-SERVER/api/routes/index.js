@@ -4,8 +4,15 @@ import menu from "../controllers/menus";
 import * as user from "../controllers/users";
 import * as role from "../controllers/roles";
 import * as menuaction from "../controllers/menus_role_action_table_Controller";
+import * as token from "../middleware/verifytoken";
 
 export const router = Router();
+
+// For Login
+router.route("/login").post(user.login);
+// Verify token 
+
+// router.route("/api/*").get(token.verifyToken);
 
 // Menus Routes
 router.route("/api/menus").post(menu.add);
@@ -25,7 +32,6 @@ router.route("/api/users/:user_code").get(user.findByUserCode);
 // router.route("/api/users/:user_code").patch(user.updateBy_MenuCode);
 router.route("/api/users/:_id").patch(user.updateBy_Id);
 
-router.route("/login").post(user.login);
 
 
 // Roles Routes

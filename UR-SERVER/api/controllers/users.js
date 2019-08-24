@@ -123,19 +123,34 @@ export const login = async (req, res) => {
   try {
     const userobj = await Users.findOne({ email: email, password: password });
     if (!userobj) {
-      return res.status(404).send();
+      return res.status(404).send({
+        success: false,
+        message: "Worng Credentials"
+      });
     }
     const logincredintails = { email, password };
     const token = jwt.sign(logincredintails, privatekey);
 
-    const defaultUrl = (userobj.role_code == "user") ? "admin" : "/recipe/";
+    const defaultUrl = (userobj.role_code == "user") ? "/admin" : "/recipe/";
     
     console.log(defaultUrl);
+
+    const user_details = {
+      email:userobj.email,
+      user_code:userobj.user_code,
+      user_name:userobj.user_name
+    };
+
+    // console.log("This is user_details:" + user_details);
+
+    // console.log("defaultUrl:" + defaultUrl);
+    // console.log("token:" + defaultUrl);
+
 
     res.status(STATUS_CODE.OK).send({
       success: true,
       message: SUCCESS.VALID_USER,
-      userobj,
+      user_details,
       token,
       defaultUrl
 

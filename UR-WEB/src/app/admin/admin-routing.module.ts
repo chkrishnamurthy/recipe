@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MenusComponent } from './menus/menus.component';
+//import { MenusComponent } from './menus/menus.component';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -10,41 +10,40 @@ import { UserscontentComponent } from './userscontent/userscontent.component';
 
 const routes: Routes = [
   {
-    path:'admin',
+  path:'admin',
   component:AdminComponent,
-
   children:[
-  {
-  path:"",
-  component:HeaderComponent,
-  outlet:"header"
-},
-{
-  path:"",
-  component:SidebarComponent,
-  outlet:"sidebar"
-},
-{
-  path:"",
-  component:MenucontentComponent,
-  outlet:"menucontent"
-
-},
-{
-  path:"",
-  component:RolescontentComponent,
-  outlet:"rolecontent"
-
-},
-
-{
-  path:"",
-  component:UserscontentComponent,
-  outlet:"usercontent"
-
-}
-]
+            {
+            path:"",
+            component:HeaderComponent,
+            outlet:"header"
+            },
+            {
+              path:"",
+              component:SidebarComponent,
+              outlet:"sidebar"
+            },
+            {
+              path:"",
+              component:MenucontentComponent,
+              outlet:"display"
+            } ,
+            {
+              path:"rolecontent",
+              component:RolescontentComponent,
+              outlet:"display"
+            } ,
+            {
+              path:"usercontent",
+              component:UserscontentComponent,
+              outlet:"display"
+            } 
+          ]
  }
+
+
+];
+
 
 //  {
 //   path:'menus',
@@ -56,7 +55,7 @@ const routes: Routes = [
 
 
  
-];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

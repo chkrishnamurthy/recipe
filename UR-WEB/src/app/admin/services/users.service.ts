@@ -9,7 +9,7 @@ import { LoginService } from '../../account/service/login.service';
 export class UsersService {
   current_User;
   constructor(private http:HttpClient, private loginService:LoginService) {
-    this.current_User =  this.loginService.currentUserValue.userobj.user_name;
+    // this.current_User =  this.loginService.currentUserValue.userobj.user_name;
    }
 
   url="http://127.0.0.1:5003/api/users";
@@ -26,7 +26,7 @@ export class UsersService {
       password:  user.password,
       role_code:  user.role_code,
       user_code: user.user_code,
-      created_by:  this.current_User
+      created_by:  "test3"
     }
     return this.http.post(this.url,UsersData);
   }

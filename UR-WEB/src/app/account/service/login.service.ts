@@ -2,16 +2,20 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-// import { User } from "../models";
+import { User } from "../models";
+import { Router } from '@angular/router';
+
+
 
 @Injectable({
   providedIn: "root"
 })
 export class LoginService {
+
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private router: Router) {
     this.currentUserSubject = new BehaviorSubject(
       JSON.parse(localStorage.getItem("currentUser"))
     );
@@ -22,26 +26,24 @@ export class LoginService {
     return this.currentUserSubject.value;
   }
 
-  login(email, password) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Content-type": "Application/json"
-      })
-    };
+  
+  public login(email:string,password:string){   
+    const url = 'http://127.0.0.1:5003/login';      
 
-    const url = "http://127.0.0.1:5003/login";
-
-    return this.http.post<any>(url, { email, password }, httpOptions).pipe(
-      map(user => {
-        localStorage.setItem("currentUser", JSON.stringify(user));
-        this.currentUserSubject.next(user);
-        return user;
-      })
-    );
+    return this.http.post<any>(url,{ email, password }).pipe(map(user => {
+          console.log("Check2", user);         
+           localStorage.setItem('currentUser', JSON.stringify(user));
+            this.currentUserSubject.next(user);
+            return user;
+        }));
   }
 
   logout() {
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-  }
+    this.router.navigate(['/']);
+  } 
+
+
+
 }

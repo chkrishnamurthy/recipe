@@ -1,0 +1,18 @@
+{
+
+"userCredentials":{
+     "username":"krishna",
+     "email":"@gmail.com",
+     "password":"abc"
+},
+
+"jwtCredentials":{
+     "secret":"secret"
+},
+"connect":{
+     "toMongo":true,
+     "topostgres":false
+
+}
+
+}

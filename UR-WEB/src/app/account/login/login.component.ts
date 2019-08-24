@@ -41,8 +41,11 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.email,this.password).pipe(first())
      .subscribe(
          userData => {
-            console.log("Check user data", userData);
-            this.router.navigate(["/"+userData.defaultUrl]);
+            console.log("defaultUrl", userData.defaultUrl);
+            // console.log("userData", userData);
+            // console.log("token", userData.token);
+
+            this.router.navigate([userData.defaultUrl]);
        },
          error => {
             console.log("ERROR user data:", error);

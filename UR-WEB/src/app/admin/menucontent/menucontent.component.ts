@@ -33,9 +33,10 @@ export class MenucontentComponent implements OnInit {
   }
 
   getMenusdata() {
-    this.menusService.getMenus().subscribe(menusData => {
-      this.menus = menusData.menuData;
-    });
+
+     this.menusService.getMenus().subscribe(menusData => {
+       this.menus = menusData.menuData;
+     });
   }
 
   delete_Menu_Record(_id){
