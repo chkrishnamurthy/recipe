@@ -131,7 +131,7 @@ export const login = async (req, res) => {
     const logincredintails = { email, password };
     const token = jwt.sign(logincredintails, privatekey);
 
-    const defaultUrl = (userobj.role_code == "admin") ? "/admin" : "/recipe/";
+    const defaultUrl = (userobj.role_code == "suadmin") ? "/admin" : "/recipe/";
     
     console.log(defaultUrl);
 

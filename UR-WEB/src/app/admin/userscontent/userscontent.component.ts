@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UsersService } from "../services/users.service";
+import { RolesService } from "../services/roles.service";
+
 import {
   FormGroup,
   FormControl,
@@ -8,6 +10,7 @@ import {
 } from "@angular/forms";
 import { first } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-userscontent",
@@ -18,15 +21,18 @@ export class UserscontentComponent implements OnInit {
   user_add_form: FormGroup;
   edit_Id;
   users = [];
-  constructor(private usersService: UsersService, private fb: FormBuilder) {}
+  roles = [];
+  constructor(private usersService: UsersService, private fb: FormBuilder,private rolesService:RolesService) {
+  }
 
   ngOnInit() {
     this.getUsersdata();
+    this.getRolesdata();
     this.user_add_form = this.fb.group({
       user_name: ["", Validators.required],
       email: ["", Validators.required],
       password: ["", Validators.required],
-      role_code: ["", Validators.required],
+      role_code: "user",
       user_code: ["", Validators.required],
       created_by: ["", Validators.required]
     });
@@ -36,15 +42,30 @@ export class UserscontentComponent implements OnInit {
     this.usersService.getUsers().subscribe(usersdata => {
       this.users = usersdata.usersList;
     });
+
+  }
+  
+
+  getRolesdata() {
+    this.usersService.getRoles().subscribe(data => {
+      this.roles = data.RolesList;
+      this.roles.splice(0,1)
+      // console.log(this.roles);
+    });
   }
 
+ 
+
   onSubmit() {
+    // console.log(this.user_add_form.value)
     this.usersService
       .add(this.user_add_form.value)
       .pipe(first())
       .subscribe(
         data => {
           this.getUsersdata();
+          console.log("Success");
+
         },
         error => {
           console.log("Error", error);

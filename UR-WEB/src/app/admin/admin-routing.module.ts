@@ -7,6 +7,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MenucontentComponent } from './menucontent/menucontent.component';
 import { RolescontentComponent } from './rolescontent/rolescontent.component';
 import { UserscontentComponent } from './userscontent/userscontent.component';
+import { MenuaccessComponent } from './menuaccess/menuaccess.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
             {
               path:"usercontent",
               component:UserscontentComponent,
+              outlet:"display"
+            } ,
+            {
+              path:"menuaccess",
+              component:MenuaccessComponent,
               outlet:"display"
             } 
           ]

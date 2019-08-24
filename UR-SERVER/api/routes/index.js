@@ -46,7 +46,7 @@ router.route("/api/roles/:_id").patch(role.updateBy_Id);
 // Menu Action Routes
 router.route("/api/menuaction").post(menuaction.add);
 router.route("/api/menuaction").get(menuaction.list);
-router.route("/api/menuaction/:role_id").delete(menuaction.DeleteById);
-router.route("/api/menuaction/:role_id").patch(menuaction.updateBy_RoleCode);
+router.route("/api/menuaction/:_id").delete(menuaction.deleteById);
+router.route("/api/menuaction/:_id").patch(menuaction.updateBy_Id);
 
 

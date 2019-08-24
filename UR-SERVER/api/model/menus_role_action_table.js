@@ -1,23 +1,21 @@
 import mongoose from "mongoose";
 
 const MenuActionSchema = new mongoose.Schema({
-  menu_id: {
-    type: Number
+  role_code: {
+    type: String
     
   },
 
-  role_id: {
-    type: Number
-    
+  menu_code: {
+    type: String
   },
 
   action: {
     type: Array
-    
   },
 
-  created_by: {
-    type: Number
+  access_given_by: {
+    type: String
     
   },
 

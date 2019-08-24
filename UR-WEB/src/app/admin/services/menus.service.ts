@@ -11,7 +11,7 @@ export class MenusService {
  
   current_User;
   constructor(public http: HttpClient,private loginService:LoginService) {
-   // this.current_User =  this.loginService.currentUserValue.userobj.user_name;
+    this.current_User = this.loginService.currentUserValue.user_details.user_name;
   // console.log(this.current_User)
   }
 
@@ -27,7 +27,7 @@ add(menu){
     menu_code:menu.menu_code,
     menu_description:menu.menu_description,
     menu_url:menu.menu_url,
-    created_by:"test"
+    created_by:this.current_User
   }
   return this.http.post(this.url,menusData);
 

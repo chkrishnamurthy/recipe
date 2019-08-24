@@ -11,10 +11,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MenucontentComponent } from './menucontent/menucontent.component';
 import { RolescontentComponent } from './rolescontent/rolescontent.component';
 import { UserscontentComponent } from './userscontent/userscontent.component';
+import { MenuaccessComponent } from './menuaccess/menuaccess.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, HeaderComponent, SidebarComponent, MenucontentComponent, RolescontentComponent, UserscontentComponent ],
+  declarations: [AdminComponent, HeaderComponent, SidebarComponent, MenucontentComponent, RolescontentComponent, UserscontentComponent, MenuaccessComponent ],
   imports: [
     CommonModule,
     HttpClientModule,

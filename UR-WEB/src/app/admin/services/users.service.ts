@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { LoginService } from '../../account/service/login.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,11 +16,18 @@ export class UsersService {
    }
 
   url="http://127.0.0.1:5003/api/users";
+  role_url="http://127.0.0.1:5003/api/roles";
 
 
   getUsers(): Observable<any> {
     return this.http.get(this.url);
   }
+
+  getRoles(): Observable<any> {
+    return this.http.get(this.role_url);
+  }
+
+ 
 
   add(user){
     const UsersData = {
