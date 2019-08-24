@@ -12,6 +12,8 @@ export class RolesService {
   url="http://127.0.0.1:5003/api/roles";
 
   constructor(private http: HttpClient,private loginService:LoginService) { 
+    console.log(this.loginService.currentUserValue.user_details.user_name);
+    this.current_User = this.loginService.currentUserValue.user_details.user_name;
     // this.current_User =  this.loginService.currentUserValue.userobj.user_name;
   } 
 
@@ -24,7 +26,7 @@ add(role){
   const RolesData = {
     role_name:role.role_name,
     role_code:role.role_code,
-    created_by:"test2"
+    created_by:this.current_User
   }
   return this.http.post(this.url,RolesData);
 }

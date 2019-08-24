@@ -23,7 +23,7 @@ const menuSchema = new mongoose.Schema({
   },
 
   menu_code: {
-    type: Number,
+    type: String,
     required: true
   },
 
