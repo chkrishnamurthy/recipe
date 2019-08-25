@@ -14,9 +14,9 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.currentUserValue.selfMenu.map(data=>{
-      this.menuNames.push(data.menu_code);
+      this.menuNames.push(data);
       
-      console.log(this.menuNames);
+      // console.log(this.menuNames);
 
 
     });

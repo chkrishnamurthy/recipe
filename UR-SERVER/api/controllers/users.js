@@ -140,7 +140,7 @@ export const login = async (req, res) => {
       email:userobj.email,
       user_code:userobj.user_code,
       user_name:userobj.user_name,
-      role_code:userobj.role_code
+      role_code:userobj.role_code,
     };
 
     console.log(user_details.role_code);
@@ -148,7 +148,7 @@ export const login = async (req, res) => {
     const selfMenu = await menus_role_action_table.find({ role_code: user_details.role_code });
 
     console.log(selfMenu);
-
+    
     // console.log("This is user_details:" + user_details);
     // console.log("defaultUrl:" + defaultUrl);
     // console.log("token:" + defaultUrl);
