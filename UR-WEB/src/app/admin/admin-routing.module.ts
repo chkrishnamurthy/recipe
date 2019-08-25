@@ -30,12 +30,12 @@ const routes: Routes = [
               outlet:"display"
             } ,
             {
-              path:"rolecontent",
+              path:"roles",
               component:RolescontentComponent,
               outlet:"display"
             } ,
             {
-              path:"usercontent",
+              path:"users",
               component:UserscontentComponent,
               outlet:"display"
             } ,

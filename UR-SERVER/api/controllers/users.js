@@ -4,6 +4,7 @@ import { privatekey } from "../config/data/secure";
 import jwt from "jsonwebtoken";
 
 const { Users } = model;
+const { menus_role_action_table } = model;
 
 // List of User
 export const list = (req, res) => {
@@ -133,16 +134,22 @@ export const login = async (req, res) => {
 
     const defaultUrl = (userobj.role_code == "suadmin") ? "/admin" : "/recipe/";
     
-    console.log(defaultUrl);
 
+    
     const user_details = {
       email:userobj.email,
       user_code:userobj.user_code,
-      user_name:userobj.user_name
+      user_name:userobj.user_name,
+      role_code:userobj.role_code
     };
 
-    // console.log("This is user_details:" + user_details);
+    console.log(user_details.role_code);
 
+    const selfMenu = await menus_role_action_table.find({ role_code: user_details.role_code });
+
+    console.log(selfMenu);
+
+    // console.log("This is user_details:" + user_details);
     // console.log("defaultUrl:" + defaultUrl);
     // console.log("token:" + defaultUrl);
 
@@ -152,7 +159,8 @@ export const login = async (req, res) => {
       message: SUCCESS.VALID_USER,
       user_details,
       token,
-      defaultUrl
+      defaultUrl,
+      selfMenu
 
     });
   } catch (e) {

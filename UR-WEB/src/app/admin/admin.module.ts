@@ -12,6 +12,7 @@ import { MenucontentComponent } from './menucontent/menucontent.component';
 import { RolescontentComponent } from './rolescontent/rolescontent.component';
 import { UserscontentComponent } from './userscontent/userscontent.component';
 import { MenuaccessComponent } from './menuaccess/menuaccess.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MenuaccessComponent } from './menuaccess/menuaccess.component';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

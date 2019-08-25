@@ -36,6 +36,7 @@ export class MenucontentComponent implements OnInit {
 
      this.menusService.getMenus().subscribe(menusData => {
        this.menus = menusData.menuData;
+      //  console.log(this.menus)
      });
   }
 
