@@ -5,6 +5,7 @@ import { first } from "rxjs/operators";
 import { Router } from "@angular/router";
 
 
+
 @Component({
   selector: 'app-menuaccess',
   templateUrl: './menuaccess.component.html',
@@ -16,7 +17,9 @@ export class MenuaccessComponent implements OnInit {
   menuaccess_add_form: FormGroup;
 
 
-  constructor(private menuaccessService:MenuaccessService, private fb: FormBuilder) { }
+  constructor(private menuaccessService:MenuaccessService, private fb: FormBuilder) {
+    
+    }
 
   ngOnInit() {
     this.getmenuaccess_Data();
