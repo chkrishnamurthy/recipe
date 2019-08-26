@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-//import { MenusComponent } from './menus/menus.component';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -49,18 +48,6 @@ const routes: Routes = [
 
 
 ];
-
-
-//  {
-//   path:'menus',
-// component:MenusComponent,
-
-//  }
-
-
-
-
- 
 
 
 @NgModule({

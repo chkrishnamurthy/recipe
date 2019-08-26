@@ -117,53 +117,55 @@ export class MenuaccessComponent implements OnInit {
     });
   }
 
-  // edit_MenuAccess_Record(_id, index_id) {
-  //   const menuAccess_Field = this.menuaccess_Data[index_id];
-  //   this.edit_Id = _id;
-  //   menuAccess_Field.action = [];
-  //   console.log(menuAccess_Field.action);
-  //   console.log(this.edit_Id);
-  // }
+  edit_MenuAccess_Record(_id, index_id) {
+   
 
-  // edit_Submit() {
+    const menuAccess_Field = this.menuaccess_Data[index_id];
+    this.edit_Id = _id;
+    menuAccess_Field.action = [];
+    console.log(menuAccess_Field.action);
+    console.log(this.edit_Id);
+  }
 
-  //   let check = this.menuaccess_add_form.value;
-  //   // console.log(check);
-  //   if (check.action1) {
-  //     this.action.push("1");
-  //     check.action = this.action;
-  //   }
-  //   if (check.action2) {
-  //     this.action.push("2");
-  //     check.action = this.action;
-  //   }
-  //   if (check.action3) {
-  //     this.action.push("3");
-  //     check.action = this.action;
-  //   }
-  //   if (check.action4) {
-  //     this.action.push("4");
-  //     check.action = this.action;
-  //   }
-  //   delete check.action1;
-  //   delete check.action2;
-  //   delete check.action3;
-  //   delete check.action4;
+  edit_Submit() {
+    let action = [];
+    let check = this.menuaccess_add_form.value;
+    // console.log(check);
+    if (check.action1) {
+      action.push("1");
+      check.action = action;
+    }
+    if (check.action2) {
+     action.push("2");
+      check.action = action;
+    }
+    if (check.action3) {
+      action.push("3");
+      check.action =action;
+    }
+    if (check.action4) {
+      action.push("4");
+      check.action = action;
+    }
+    delete check.action1;
+    delete check.action2;
+    delete check.action3;
+    delete check.action4;
 
-  //   console.log(check);
-  //   this.menuaccessService
-  //     .edit(this.edit_Id, check)
-  //     .pipe(first())
-  //     .subscribe(
-  //       data => {
-  //         console.log("Updated");
-  //         this.getmenuaccess_Data();
-  //       },
-  //       error => {
-  //         console.log("Error", error);
-  //       }
-  //     );
-  // }
+    console.log(check);
+    this.menuaccessService
+      .edit(this.edit_Id, check)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log("Updated");
+          this.getmenuaccess_Data();
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+  }
 
 
 

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import config from "../config/config.json";
-import { privateKey } from "../config/data/secure";
+import { privatekey } from "../config/data/secure";
 import model from "../model";
 
 const { Users } = model;
@@ -23,7 +23,7 @@ export const verifyToken = (req, res, next) => {
       return res.status(401).send({ "status": false, "message": "Token not avilable" });
     }
 
-    jwt.verify(token, privateKey, function (error, decoded) {
+    jwt.verify(token, privatekey, function (error, decoded) {
 
       if (error) {
         return res.status(401).send({ "status": false, "message": "Invalid Token" });

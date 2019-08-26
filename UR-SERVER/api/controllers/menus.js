@@ -13,6 +13,7 @@ class menuControllerClass{
      
      // List Menus
      static list(req,res){
+          console.log("req", req);
           return Menu.find({}).then(menuData =>res.status(200).send({ success: true, message: "Menu List ", menuData })).catch(error => res.status(400).send(error))
      }
 
