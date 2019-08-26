@@ -149,13 +149,17 @@ export const login = async (req, res) => {
 
     const selfMenu = await menus_role_action_table.find({ role_code: user_details.role_code });
 
-    console.log(selfMenu);
-    
+    // console.log("selfMenu"+selfMenu);
+    // console.log("user_details"+user_details);
+    // console.log("selfMenu"+selfMenu);
+
+    // console.log("selfMenu"+selfMenu);
+
     // console.log("This is user_details:" + user_details);
     // console.log("defaultUrl:" + defaultUrl);
     // console.log("token:" + defaultUrl);
 
-
+console.log(user_details)
     res.status(STATUS_CODE.OK).send({
       success: true,
       message: SUCCESS.VALID_USER,

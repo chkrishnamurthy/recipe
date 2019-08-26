@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { UsersService } from "../services/users.service";
 import { RolesService } from "../services/roles.service";
+import { MenuaccessService } from "../services/menuaccess.service";
+import { LoginService } from "../../account/service/login.service";
 
 import {
   FormGroup,
@@ -22,7 +24,16 @@ export class UserscontentComponent implements OnInit {
   edit_Id;
   users = [];
   roles = [];
-  constructor(private usersService: UsersService, private fb: FormBuilder,private rolesService:RolesService) {
+  currentUser;
+  constructor(private usersService: UsersService, private fb: FormBuilder,private rolesService:RolesService,private menuaccessService:MenuaccessService,private loginService:LoginService) {
+
+    this.currentUser = this.loginService.currentUserValue.selfMenu;
+
+    console.log(this.currentUser);
+
+    this.menuaccessService.getmenuaccess().subscribe(data=>{
+      console.log(data);
+    })
   }
 
   ngOnInit() {
