@@ -31,7 +31,6 @@ export class LoginService {
     const url = 'http://127.0.0.1:5003/login';      
 
     return this.http.post<any>(url,{ email, password }).pipe(map(user => {
-          console.log("Check2", user);         
            localStorage.setItem('currentUser', JSON.stringify(user));
             this.currentUserSubject.next(user);
             return user;
