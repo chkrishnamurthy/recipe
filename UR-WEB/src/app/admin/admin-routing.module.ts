@@ -9,40 +9,25 @@ import { UserscontentComponent } from './userscontent/userscontent.component';
 import { MenuaccessComponent } from './menuaccess/menuaccess.component';
 
 const routes: Routes = [
-  {
-  path:'admin',
-  component:AdminComponent,
-  children:[
-            {
-            path:"",
-            component:HeaderComponent,
-            outlet:"header"
-            },
-            {
-              path:"",
-              component:SidebarComponent,
-              outlet:"sidebar"
-            },
-            {
-              path:"",
-              component:MenucontentComponent,
-              outlet:"display"
-            } ,
-            {
-              path:"roles",
-              component:RolescontentComponent,
-              outlet:"display"
-            } ,
-            {
-              path:"users",
-              component:UserscontentComponent,
-              outlet:"display"
-            } ,
-            {
-              path:"menuaccess",
-              component:MenuaccessComponent,
-              outlet:"display"
-            } 
+  { path:'admin', component:AdminComponent,
+  children:[{ path:"", component:HeaderComponent, outlet:"header" },
+            { path:"",  component:SidebarComponent, outlet:"sidebar"  },
+            { path:"",  component:MenucontentComponent,  outlet:"display" },
+            { path:"roles",  component:RolescontentComponent,  outlet:"display" },
+            { path:"users",  component:UserscontentComponent,  outlet:"display" },
+            { path:"menuaccess", component:MenuaccessComponent, outlet:"display" },
+            {  path:"menus",   component:MenucontentComponent,   outlet:"display"} 
+          ]
+ },
+
+ { path:'user', component:AdminComponent,
+  children:[{ path:"", component:HeaderComponent, outlet:"header" },
+            { path:"",  component:SidebarComponent, outlet:"sidebar"  },
+            { path:"",  component:UserscontentComponent,  outlet:"display" },
+            { path:"roles",  component:RolescontentComponent,  outlet:"display" },
+            { path:"users",  component:UserscontentComponent,  outlet:"display" },
+            { path:"menuaccess", component:MenuaccessComponent, outlet:"display" },
+            {  path:"menus",   component:MenucontentComponent,   outlet:"display"} 
           ]
  }
 

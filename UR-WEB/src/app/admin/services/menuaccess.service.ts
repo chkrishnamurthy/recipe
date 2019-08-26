@@ -23,15 +23,27 @@ export class MenuaccessService {
 
   add(menuaccess){
 
-    // console.log(menuaccess.action)
+    console.log(menuaccess)
+
+    const actionList = {
+     create : (menuaccess.access_create)?true:false,
+     read : (menuaccess.access_read)?true:false,
+     update : (menuaccess.access_update)?true:false,
+     delete : (menuaccess.access_delete)?true:false
+
+    }
+
+    // console.log();
+
+
     const accessData = {
       role_code:menuaccess.role_code,
       menu_code:menuaccess.menu_code,
-      action:menuaccess.action,
+      action:JSON.stringify(actionList),
       access_given_by:this.currentUser
     }
 
-    console.log(accessData.action)
+    // console.log(accessData)
     return this.http.post(this.url,accessData);
   }
 
@@ -39,8 +51,21 @@ export class MenuaccessService {
     return this.http.delete(`${this.url}/${_id}`);
   }
 
-  edit(_id,roleobj){
-    return this.http.patch(`${this.url}/${_id}`,roleobj);
+  edit(_id,accessObj){
+    const actionList = {
+      create : (accessObj.access_create)?true:false,
+      read : (accessObj.access_read)?true:false,
+      update : (accessObj.access_update)?true:false,
+      delete : (accessObj.access_delete)?true:false
+     }
+
+     const accessData = {
+      role_code:accessObj.role_code,
+      menu_code:accessObj.menu_code,
+      action:JSON.stringify(actionList),
+      access_given_by:this.currentUser
+    }
+    return this.http.patch(`${this.url}/${_id}`,accessData);
   }
 
 

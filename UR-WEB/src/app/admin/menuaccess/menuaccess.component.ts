@@ -35,12 +35,12 @@ export class MenuaccessComponent implements OnInit {
     this.menuaccess_add_form = this.fb.group({
       role_code: ["", Validators.required],
       menu_code: ["", Validators.required],
-      action1: ["", Validators.required],
-      action2: [false, Validators.required],
-      action3: [false, Validators.required],
-      action4: [false, Validators.required]
+      "access_create":[""],
+      "access_read":[""],
+      "access_update":[""],
+      "access_delete":[""] 
 
-      // myValues: _fb.array([true, false, true])
+      // myValues: _fb.array([true, "", true])
     });
 
     this.rolesService.getRoles().subscribe(rolesData => {
@@ -64,35 +64,7 @@ export class MenuaccessComponent implements OnInit {
 
   
   onSubmit() {
-    let check = this.menuaccess_add_form.value;
-    let action = [];
-
-    check.action = [];
-
-    if (check.action1) {
-      action.push("1");
-      check.action = action;
-    }
-    if (check.action2) {
-      action.push("2")
-      check.action = action;
-    }
-    if (check.action3) {
-      action.push("3");
-      check.action = action;
-    }
-    if (check.action4) {
-      action.push("4");
-      check.action = action;
-    }
-    delete check.action1;
-    delete check.action2;
-    delete check.action3;
-    delete check.action4;
-
-    console.log(check.action);
-    
-    this.menuaccessService.add(check)
+    this.menuaccessService.add(this.menuaccess_add_form.value)
     .pipe(first())
       .subscribe(
         data => {
@@ -119,6 +91,7 @@ export class MenuaccessComponent implements OnInit {
 
   edit_MenuAccess_Record(_id, index_id) {
    
+    this.menuaccessService.add(this.menuaccess_add_form.value)
 
     const menuAccess_Field = this.menuaccess_Data[index_id];
     this.edit_Id = _id;
@@ -128,31 +101,8 @@ export class MenuaccessComponent implements OnInit {
   }
 
   edit_Submit() {
-    let action = [];
-    let check = this.menuaccess_add_form.value;
-    // console.log(check);
-    if (check.action1) {
-      action.push("1");
-      check.action = action;
-    }
-    if (check.action2) {
-     action.push("2");
-      check.action = action;
-    }
-    if (check.action3) {
-      action.push("3");
-      check.action =action;
-    }
-    if (check.action4) {
-      action.push("4");
-      check.action = action;
-    }
-    delete check.action1;
-    delete check.action2;
-    delete check.action3;
-    delete check.action4;
 
-    console.log(check);
+    let check = this.menuaccess_add_form.value;
     this.menuaccessService
       .edit(this.edit_Id, check)
       .pipe(first())

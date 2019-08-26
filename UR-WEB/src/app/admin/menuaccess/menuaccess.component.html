@@ -107,24 +107,18 @@
                           </div>
 
                          <div class="form-group">
-                             <!-- <label>Actions</label> -->
-                                 <!-- <select  formControlName="action" class="form-control" >
-                               <option> 1  </option>
-                               <option> 2  </option>
-                               <option> 3  </option>
-                               <option> 4  </option>
-                              </select>  -->
+                            
                              <label>Create</label>
-                              <input type="checkbox" name="vehicle" formControlName="action1"  value="Car"/>
+                              <input type="checkbox" name="vehicle" formControlName="access_create" />
 
                                <label>Edit</label>
-                              <input type="checkbox" name="vehicle" formControlName="action2"  value="Car"/>
+                              <input type="checkbox" name="vehicle" formControlName="access_read" />
 
                               <label>Retrive</label>
-                              <input type="checkbox" name="vehicle" formControlName="action3"  value="Car"/>
+                              <input type="checkbox" name="vehicle" formControlName="access_update" />
 
                               <label>Delete</label>
-                              <input type="checkbox" name="vehicle" formControlName="action4"  value="Car"/> 
+                              <input type="checkbox" name="vehicle" formControlName="access_delete" /> 
 
 
                          </div>
@@ -141,7 +135,6 @@
           </div>
         </div>
 
-
         <div id="Edit_Menu_Modal" class="modal fade">
           <div class="modal-dialog" data-target="#modal">
             <div class="modal-content">             
@@ -152,13 +145,15 @@
                 <!--Header-->
                 <div class="modal-body">
               
-                  <form [formGroup]="menuaccess_add_form"  #myForm="ngForm">
+                 
+                  <form [formGroup]="menuaccess_add_form" >
                   
                     <!--Menu name-->
                   
                     <div class="form-group">
                           <label>Role Name</label>
                           <select  formControlName="role_code" class="form-control" >
+                              <option>Select Role</option>
                             <option *ngFor="let role of roles">{{role.role_code}}</option>
                           </select>
                        </div>
@@ -167,6 +162,7 @@
                        <div class="form-group">
                                <label>Menu Name</label>
                                <select  formControlName="menu_code" class="form-control" >
+                                 <option>Select Menu</option>
                                 <option *ngFor="let menu of menus">{{menu.menu_code}}</option>
                               </select>
                       </div>
@@ -174,24 +170,21 @@
                      <div class="form-group">
                         
                          <label>Create</label>
-                          <input type="checkbox" name="vehicle" formControlName="action1"  value="Car"/>
+                          <input type="checkbox" name="vehicle" formControlName="access_create" />
 
                            <label>Edit</label>
-                          <input type="checkbox" name="vehicle" formControlName="action2"  value="Car"/>
+                          <input type="checkbox" name="vehicle" formControlName="access_read" />
 
                           <label>Retrive</label>
-                          <input type="checkbox" name="vehicle" formControlName="action3"  value="Car"/>
+                          <input type="checkbox" name="vehicle" formControlName="access_update" />
 
                           <label>Delete</label>
-                          <input type="checkbox" name="vehicle" formControlName="action4"  value="Car"/> 
+                          <input type="checkbox" name="vehicle" formControlName="access_delete" /> 
 
 
-                     </div>
-
-
-                            
+                     </div>                            
                      <input type="button"  class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-success" value="Add" (click)="edit_Submit()" data-dismiss="modal" >
+                    <input type="submit" class="btn btn-success" value="Update" (click)="edit_Submit()"  >
                 </form>
               
         
@@ -202,6 +195,9 @@
             </div>
           </div>
         </div>
+
+
+      
 
 
         

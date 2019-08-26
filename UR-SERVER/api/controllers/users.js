@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 
 const { Users } = model;
 const { menus_role_action_table } = model;
+const { Roles } = model;
 
 // List of User
 export const list = (req, res) => {
@@ -132,10 +133,11 @@ export const login = async (req, res) => {
     const logincredintails = { email, password };
     const token = jwt.sign(logincredintails, privatekey);
 
-    const defaultUrl = (userobj.role_code == "suadmin") ? "/admin" : "/recipe/";
-    
+    const roleObj = await Roles.findOne({ role_code: userobj.role_code });
 
+    const defaultUrl = (userobj.role_code == roleObj.role_code) ? ("/"+roleObj.role_code) : "/recipe/";
     
+   
     const user_details = {
       email:userobj.email,
       user_code:userobj.user_code,

@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
             console.log("defaultUrl", userData.defaultUrl);
             // console.log("userData", userData);
             // console.log("token", userData.token);
-
             this.router.navigate([userData.defaultUrl]);
        },
          error => {
