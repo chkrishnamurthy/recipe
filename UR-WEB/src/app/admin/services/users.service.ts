@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { LoginService } from '../../account/service/login.service';
+import { SidebarService } from '../services/sidebar.service';
 
 
 @Injectable({
@@ -9,10 +10,8 @@ import { LoginService } from '../../account/service/login.service';
 })
 export class UsersService {
   current_User;
-  constructor(private http:HttpClient, private loginService:LoginService) {
+  constructor(private http:HttpClient, private loginService:LoginService,private sidebarService:SidebarService) {
     this.current_User = this.loginService.currentUserValue.user_details.user_name;
-
-    // this.current_User =  this.loginService.currentUserValue.userobj.user_name;
    }
 
   url="http://127.0.0.1:5003/api/users";
@@ -49,6 +48,11 @@ edit(_id,userObj){
 
  return this.http.patch(`${this.url}/${_id}`,userObj)
 
+}
+
+
+getActions(){
+  return this.sidebarService.getUserMenuList();
 }
 
 

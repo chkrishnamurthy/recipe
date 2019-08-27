@@ -76,3 +76,23 @@ export const updateBy_Id = async (req,res) =>{
 const updatedRole = await menus_role_action_table.findByIdAndUpdate(_id,req.body);
 return res.status(204).send(updatedRole);
 }
+
+
+export const menuList = async (req, res) => {
+  try{
+      
+      const { role_code } = req.params;
+  
+      const roleCollection = await menus_role_action_table.find({role_code: role_code,});
+      if (!roleCollection) {
+            res.status(400).send(ERROR.USER);
+      }
+      res.status(200).send({
+                      success: true,
+                      message: SUCCESS.ROLE_DELETED,
+                      roleCollection
+                    });
+  }catch (e) {
+          res.status(500).send({ error:ERROR.USER,e})
+  }
+};

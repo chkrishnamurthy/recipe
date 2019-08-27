@@ -52,6 +52,7 @@ router.route("/api/menuaction").post(menuaction.add);
 router.route("/api/menuaction").get(menuaction.list);
 router.route("/api/menuaction/:_id").delete(menuaction.deleteById);
 router.route("/api/menuaction/:_id").patch(menuaction.updateBy_Id);
+router.route("/api/menuaction/:role_code").get(menuaction.menuList);
 
 // file upload 
 

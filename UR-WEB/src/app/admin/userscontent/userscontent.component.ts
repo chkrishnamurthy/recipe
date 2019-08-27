@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UsersService } from "../services/users.service";
 import { RolesService } from "../services/roles.service";
-import { MenuaccessService } from "../services/menuaccess.service";
 import { LoginService } from "../../account/service/login.service";
 
 import {
@@ -11,8 +10,6 @@ import {
   Validators
 } from "@angular/forms";
 import { first } from "rxjs/operators";
-import { Router } from "@angular/router";
-import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-userscontent",
@@ -25,15 +22,13 @@ export class UserscontentComponent implements OnInit {
   users = [];
   roles = [];
   currentUser;
-  constructor(private usersService: UsersService, private fb: FormBuilder,private rolesService:RolesService,private menuaccessService:MenuaccessService,private loginService:LoginService) {
+  currentUserAction:any = {create: false, 
+                              delete: false, 
+                              read: false, 
+                              update: false}
 
-    this.currentUser = this.loginService.currentUserValue.selfMenu;
-
-    console.log(this.currentUser);
-
-    this.menuaccessService.getmenuaccess().subscribe(data=>{
-      console.log(data);
-    })
+  constructor(private usersService: UsersService, private fb: FormBuilder,private rolesService:RolesService,private loginService:LoginService) {
+    
   }
 
   ngOnInit() {
@@ -47,6 +42,8 @@ export class UserscontentComponent implements OnInit {
       user_code: ["", Validators.required],
       created_by: ["", Validators.required]
     });
+
+    this.getActionsList();
   }
 
   getUsersdata() {
@@ -132,5 +129,23 @@ export class UserscontentComponent implements OnInit {
     }
   );
 }
+
+
+
+private getActionsList(){
+  this.usersService.getActions().pipe(first()).subscribe(action => {     
+   
+      this.currentUserAction = JSON.parse((action as any).roleCollection.filter(function(a:any){
+            // console.log(a);
+                        // console.log(a.menu_code)
+        return (a.menu_code === "users");
+      })[0].action);
+
+      // console.log("User ACTIONS-currentUserAction", this.currentUserAction);
+
+  });
+}
+
+
 
 }
