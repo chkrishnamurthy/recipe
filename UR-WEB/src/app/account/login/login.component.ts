@@ -44,9 +44,12 @@ export class LoginComponent implements OnInit {
             console.log("defaultUrl", userData.defaultUrl);
             // console.log("userData", userData);
             // console.log("token", userData.token);
-            this.router.navigate([userData.defaultUrl]);
+            // this.router.navigate([userData.defaultUrl]);
             // this.router.navigate(['headerview']);
-            
+            // this.router.navigate(['uploadview']);
+            this.router.navigate(['recipe']);
+
+
        },
          error => {
             console.log("ERROR user data:", error);

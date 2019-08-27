@@ -1,1 +1,198 @@
-<p>uploadview works!</p>
+
+
+
+<section class="sample-text-area">
+     <div class="container">
+          <div class="row">
+               <div class="col-lg-8 col-md-8">
+                    <h3 class="mb-30">Add Recipe details</h3>
+                    <form action="#" class="form_recipe">
+
+                         <div class="col-12">
+                              <input class="effect-9" type="text" placeholder="Recipe Name">
+                              <span class="focus-border">
+                                   <i></i>
+                              </span>
+                         </div>
+
+
+                         <div class="col-12">
+                              <textarea style="width: 100%" class="effect-9" type="text"
+                                   placeholder="Recipe Description"></textarea>
+                              <span class="focus-border">
+                                   <i></i>
+                              </span>
+                         </div>
+
+
+
+                         <div class="col-12">
+                              <select class="effect-9 form-control">
+                                   <option>Recipe In Kilo Grams</option>
+                                   <option>1 KG</option>
+                                   <option>2 KG</option>
+                                   <option>3 KG</option>
+                                   <option>4 KG</option>
+                                   <option>5 KG</option>
+                              </select>
+                              <span class="focus-border">
+                                   <i></i>
+                              </span>
+                         </div>
+
+
+                         <div class="col-12 effect-9 myuploads" style="">
+                              <label style="width: 100%" class="file1" class="effect-9 " >
+                                   Upload Recipe Images&hellip;
+                                   <input type="file" multiple style="display: none;" class="effect-9">
+                              </label>
+
+                         </div>
+
+                         <br><br>
+
+
+                         <h4 class="mb-30 ">Primary Incredients</h4>
+
+                         <div class="">
+                              <table id="myTable" class=" table order-list" cellpadding="0" cellspacing="0">
+
+                                   <tbody>
+                                        <tr class="paddingtop">
+                                             <td class="col-sm-4 paddingadd">
+                                                  <input class="effect-9" type="text"
+                                                       placeholder="Ingredients" />
+                                                  <span class="focus-border">
+                                                       <i></i>
+                                                  </span>
+                                             </td>
+
+                                             <td class="col-sm-4 paddingadd">
+                                                  <input class="effect-9" type="text"
+                                                       placeholder="Quantity" />
+                                                  <span class="focus-border">
+                                                       <i></i>
+                                                  </span>
+                                             </td>
+
+                                             <td class="col-sm-4 paddingadd">
+                                                  <input class="effect-9" type="text" placeholder="Unit" />
+                                                  <span class="focus-border">
+                                                       <i></i>
+                                                  </span>
+                                             </td>
+
+
+                                             <td class="col-sm-2"><a class="deleteRow"></a>
+
+                                             </td>
+                                        </tr>
+
+
+
+
+                                   </tbody>
+                                   <tfoot>
+                                        <tr>
+                                             <td colspan="5" style="text-align: left;">
+                                                  <input type="button" class="btn btn-lg btn-block "
+                                                       id="addrow" value="Add Row" />
+                                             </td>
+                                        </tr>
+                                        <tr>
+                                        </tr>
+                                   </tfoot>
+                              </table>
+                         </div>
+
+
+                         <h4 class="mb-30 ">Secondary Incredients</h4>
+
+                         <div class="">
+                              <table id="myTable" class=" table order-list" cellpadding="0" cellspacing="0">
+
+                                   <tbody>
+                                        <tr class="paddingtop">
+                                             <td class="col-sm-4 paddingadd">
+                                                  <input class="effect-9" type="text"
+                                                       placeholder="Ingredients" />
+                                                  <span class="focus-border">
+                                                       <i></i>
+                                                  </span>
+                                             </td>
+
+                                             <td class="col-sm-4 paddingadd">
+                                                  <input class="effect-9" type="text"
+                                                       placeholder="Quantity" />
+                                                  <span class="focus-border">
+                                                       <i></i>
+                                                  </span>
+                                             </td>
+
+                                             <td class="col-sm-4 paddingadd">
+                                                  <input class="effect-9" type="text" placeholder="Unit" />
+                                                  <span class="focus-border">
+                                                       <i></i>
+                                                  </span>
+                                             </td>
+
+
+                                             <td class="col-sm-2"><a class="deleteRow"></a>
+
+                                             </td>
+                                        </tr>
+
+
+                                   </tbody>
+                                   <tfoot>
+                                        <tr>
+                                             <td colspan="5" style="text-align: left;">
+                                                  <input type="button" class="btn btn-lg btn-block "
+                                                       id="addrow" value="Add Row" />
+                                             </td>
+                                        </tr>
+                                        <tr>
+                                        </tr>
+                                   </tfoot>
+                              </table>
+                         </div>
+                    </form>
+               </div>
+
+          </div>
+     </div>
+</section>
+<!-- 
+<div>
+     <table id="myTable">
+          <tr>
+            <td>Row1 cell1</td>
+            <td>Row1 cell2</td>
+          </tr>
+          <tr>
+            <td>Row2 cell1</td>
+            <td>Row2 cell2</td>
+          </tr>
+          <tr>
+            <td>Row3 cell1</td>
+            <td>Row3 cell2</td>
+          </tr>
+        </table>
+        <br>
+        
+        <button type="button" onclick="changingfun()">Try it</button>
+</div> -->
+
+<script>
+     function changingfun() {
+       var table = document.getElementById("myTable");
+       var row = table.insertRow(0);
+       var cell1 = row.insertCell(0);
+       var cell2 = row.insertCell(1);
+       cell1.innerHTML = "NEW CELL1";
+       cell2.innerHTML = "NEW CELL2";
+     }
+
+     </script>
+
+

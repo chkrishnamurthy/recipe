@@ -8070,3 +8070,7 @@ a.text-dark:hover, a.text-dark:focus {
 .invisible {
   visibility: hidden !important;
 }
+
+.row.fullscreen.d-flex.align-items-center.justify-content-start {
+    height: 460px !important;
+}
