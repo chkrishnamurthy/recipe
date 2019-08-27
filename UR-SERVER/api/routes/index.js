@@ -6,6 +6,10 @@ import * as role from "../controllers/roles";
 import * as menuaction from "../controllers/menus_role_action_table_Controller";
 import * as token from "../middleware/verifytoken";
 
+import * as recipes from '../controllers/recipes';
+import { upload } from '../middleware/uploadFile';
+
+
 export const router = Router();
 
 // For Login
@@ -49,4 +53,7 @@ router.route("/api/menuaction").get(menuaction.list);
 router.route("/api/menuaction/:_id").delete(menuaction.deleteById);
 router.route("/api/menuaction/:_id").patch(menuaction.updateBy_Id);
 
+// file upload 
+
+router.route('/api/upload/recipe').post(upload.single('recipe_img'),recipes.create);
 
