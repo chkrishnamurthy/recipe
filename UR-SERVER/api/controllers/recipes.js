@@ -4,27 +4,37 @@ import { ERROR, SUCCESS, STATUS_CODE } from "../config/data/message";
 const { Recipe } = model;
 
 export const create = (req,res)=>{
-     // console.log("recipe inserting");
-     // console.log(req.body);
-     // console.log(req.file);
-     // console.log("this is imahe path ", req.file.path);
+     const { recipe_name,
+          recipe_description,
+          recipe_no_of_persons,
+          recipe_kilo_grams,
+          ing_primary_ingredients,
+          ing_secondary_ingredients,
+          created_by }= req.body;
 
-     const { recipe_name,recipe_description,recipe_no_of_persons,recipe_kilo_grams,primary_ingredients,secondary_ingredients,created_by }= req.body;
+          let primary_ingredients = JSON.parse(ing_primary_ingredients);
+          let secondary_ingredients = JSON.parse(ing_secondary_ingredients);
 
-     let recipe_img_path = req.file.path;
-     console.log("recipe_img_path",recipe_img_path)
+          let recipe_img_path = req.file.filename;
+           Recipe.create( { recipe_name,recipe_description,recipe_img_path,recipe_no_of_persons,recipe_kilo_grams,primary_ingredients,secondary_ingredients,created_by} ) .then(recipeData => res.status(STATUS_CODE.CREATED)
+     .send({
+             success: true,
+             message: "success, Created",
+             recipeData
+           }))
+     .catch(error => res.status(401)
+     .send("error,Not created", error)
+     );
 
-     // console.log("recipe_name",recipe_name)
-     // console.log("recipe_description",recipe_description)
-     // console.log("recipe_no_of_persons",recipe_no_of_persons)
-     // console.log("recipe_kilo_grams",recipe_kilo_grams)
-     // console.log("primary_ingredients",primary_ingredients)
-     // console.log("secondary_ingredients",secondary_ingredients)
-     // console.log("created_by",created_by)
-   
-// let 
-     // Recipe.create( { recipe_name,recipe_description,recipe_no_of_persons,recipe_kilo_grams,recipe_img_path,primary_ingredients,secondary_ingredients,created_by } ).then(recipesData=>{
-     //      res.status(200).send({success :"Created",recipesData})
-     //      .catch(error => res.status(400).send(error));
-     // })
-}
+};
+
+export const list = (req, res) => {
+     console.log("Get Recipies list");
+     Recipe.find({}).then(recipieList => res.status(STATUS_CODE.OK)
+                                        .send({
+                                               success: true,
+                                               recipieList
+                                     })
+                   ).catch(error => res.status(STATUS_CODE.NOT_FOUND)
+                                       .send(error));
+   };

@@ -16,7 +16,7 @@ export const router = Router();
 router.route("/login").post(user.login);
 // Verify token 
 
-router.route("/api/*").get(token.verifyToken);
+// router.route("/api/*").get(token.verifyToken);
 
 // Menus Routes
 router.route("/api/menus").post(menu.add);
@@ -57,4 +57,4 @@ router.route("/api/menuaction/:role_code").get(menuaction.menuList);
 // file upload 
 
 router.route('/api/upload/recipe').post(upload.single('recipe_img'),recipes.create);
-
+router.route("/api/upload/recipe").get(recipes.list)
