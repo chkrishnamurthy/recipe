@@ -9,12 +9,15 @@ import { UploadviewComponent } from './uploadview/uploadview.component';
 import { ProfileviewComponent } from './profileview/profileview.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { FooterComponent } from './footer/footer.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [ListviewComponent, HeaderviewComponent, DetailviewComponent, UploadviewComponent, ProfileviewComponent, RecipeComponent, FooterComponent],
   imports: [
     CommonModule,
-    ClientRoutingModule
+    ClientRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ClientModule { }
