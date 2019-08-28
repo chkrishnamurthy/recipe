@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UploadRecipeService} from '../services/upload-recipe.service';
 
 @Component({
   selector: 'app-listview',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListviewComponent implements OnInit {
 
-  constructor() { }
-
+  recipesData = [];
+  constructor(private uploadRecipeService:UploadRecipeService) { }
   ngOnInit() {
+    this.uploadRecipeService.getRecipes().subscribe(data=>{
+      console.log(data.recipieList);
+      this.recipesData = data.recipieList;
+    });
   }
+
+
 
 }

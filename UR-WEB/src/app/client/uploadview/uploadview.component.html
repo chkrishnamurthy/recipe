@@ -1,188 +1,227 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
-
-<section class="sample-text-area">
-     <div class="container">
-          <div class="row">
-
-               <div class="col-lg-8 col-md-8">
-      
-                         <h3 class="mb-30">Add Recipe details</h3>
-
-                       
-                    <div class="col-12">
-                              <input class="effect-9" type="text" placeholder="Recipe Name">
-                              <span class="focus-border">
-                                   <i></i>
-                              </span>
-                         </div><br>
-
-
-                         <div class="col-12">
-                              <textarea style="width: 100%" class="effect-9" type="text"
-                                   placeholder="Recipe Description"></textarea>
-                              <span class="focus-border">
-                                   <i></i>
-                              </span>
-                         </div><br><br>
-
-
-
-                         <div class="col-12">
-                              <select class="effect-9 form-control">
-                                   <option>Recipe In Kilo Grams</option>
-                                   <option>1 KG</option>
-                                   <option>2 KG</option>
-                                   <option>3 KG</option>
-                                   <option>4 KG</option>
-                                   <option>5 KG</option>
-                              </select>
-                              <span class="focus-border">
-                                   <i></i>
-                              </span>
-                         </div><br><br>
-
-
-                         <div class="col-12 effect-9 myuploads" style="">
-                              <label style="width: 100%" class="file1" class="effect-9 " >
-                                   Upload Recipe Images&hellip;
-                                   <input type="file" multiple style="display: none;" class="effect-9">
-                              </label>
-
-                         </div>
-
-                         <br><br>
-                        
-
-
-                         <h4 class="mb-30 ">Primary Incredients</h4>
-
-                         
-                              <table id="myTable" class=" table order-list" cellpadding="0" cellspacing="0">
-
-                                   <tbody>
-                                        <tr class="paddingtop">
-                                             <td class="col-sm-4 paddingadd">
-                                                  <input class="effect-9" type="text"
-                                                       placeholder="Ingredients" />
-                                                  <span class="focus-border">
-                                                       <i></i>
-                                                  </span>
-                                             </td>
-
-                                             <td class="col-sm-4 paddingadd">
-                                                  <input class="effect-9" type="text"
-                                                       placeholder="Quantity" />
-                                                  <span class="focus-border">
-                                                       <i></i>
-                                                  </span>
-                                             </td>
-
-                                             <td class="col-sm-4 paddingadd">
-                                                  <input class="effect-9" type="text" placeholder="Unit" />
-                                                  <span class="focus-border">
-                                                       <i></i>
-                                                  </span>
-                                             </td>
-
-
-                                             <td class="col-sm-2"><a class="deleteRow"></a>
-
-                                             </td>
-                                        </tr>
-
-
-
-
-                                   </tbody>
-                                   <tfoot>
-                                        <tr>
-                                             <td colspan="5" style="text-align: left;">
-                                                  <input type="button" class="btn btn-lg btn-block "
-                                                       id="addrow" value="Add Row" />
-                                             </td>
-                                        </tr>
-                                       
-                                   </tfoot>
-                              </table>
-                       
-
-
-                         <h4 class="mb-30 ">Secondary Incredients</h4>
-
-                        
-                              <table id="myTable" class=" table order-list" cellpadding="0" cellspacing="0">
-
-                                   <tbody>
-                                        <tr class="paddingtop">
-                                             <td class="col-sm-4 paddingadd">
-                                                  <input class="effect-9" type="text"
-                                                       placeholder="Ingredients" />
-                                                  <span class="focus-border">
-                                                       <i></i>
-                                                  </span>
-                                             </td>
-
-                                             <td class="col-sm-4 paddingadd">
-                                                  <input class="effect-9" type="text"
-                                                       placeholder="Quantity" />
-                                                  <span class="focus-border">
-                                                       <i></i>
-                                                  </span>
-                                             </td>
-
-                                             <td class="col-sm-4 paddingadd">
-                                                  <input class="effect-9" type="text" placeholder="Unit" />
-                                                  <span class="focus-border">
-                                                       <i></i>
-                                                  </span>
-                                             </td>
-
-
-                                             <td class="col-sm-2"><a class="deleteRow"></a>
-
-                                             </td>
-                                        </tr>
-
-
-                                   </tbody>
-                                   <tfoot>
-                                        <tr>
-                                             <td colspan="5" style="text-align: left;">
-                                                  <input type="button" class="btn btn-lg btn-block "
-                                                       id="addrow" value="Add Row" />
-                                             </td>
-                                        </tr>
-                                        <tr>
-                                        </tr>
-                                   </tfoot>
-                              </table>
-                       
-                              <button>Submit</button>
-
-                         
-               </div>
-
-          </div>
-     </div>
-</section>
-<!-- 
-<div>
-     <table id="myTable">
-          <tr>
-            <td>Row1 cell1</td>
-            <td>Row1 cell2</td>
-          </tr>
-          <tr>
-            <td>Row2 cell1</td>
-            <td>Row2 cell2</td>
-          </tr>
-          <tr>
-            <td>Row3 cell1</td>
-            <td>Row3 cell2</td>
-          </tr>
-        </table>
-        <br>
+<div formGroupName="address">
+          <h3>Address</h3>
         
-        <button type="button" onclick="changingfun()">Try it</button>
-</div> -->
+          <label>
+            Street:
+            <input type="text" formControlName="street">
+          </label>
+        
+          <label>
+            City:
+            <input type="text" formControlName="city">
+          </label>
+          
+          <label>
+            State:
+            <input type="text" formControlName="state">
+          </label>
+        
+          <label>
+            Zip Code:
+            <input type="text" formControlName="zip">
+          </label>
+        </div>
 
+
+<div formArrayName="aliases">
+          <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
+        
+          <div *ngFor="let address of aliases.controls; let i=index">
+            <!-- The repeated alias template -->
+            <label>
+              Alias:
+              <input type="text">
+              <!-- <input type="text" [formControlName]="address"> -->
+
+            </label>
+          </div>
+        </div>
+
+        <button>Submit</button>
+        </form>
+
+
+        <!-- <section class="sample-text-area">
+               <div class="container">
+                    <div class="row">
+                    
+          
+                         <div class="col-lg-8 col-md-8">
+                
+                                   <h3 class="mb-30">Add Recipe details</h3>
+                                   <form [formGroup]="uploadForm" (ngSubmit)="onSubmit();myform.reset()" #myform = "ngForm" >
+                              <div class="col-12">
+                                        <input class="effect-9" type="text" formControlName="recipe_name" placeholder="Recipe Name">
+                                        <span class="focus-border">
+                                             <i></i>
+                                        </span>
+                                   </div><br>
+          
+          
+                                   <div class="col-12">
+                                        <textarea style="width: 100%" class="effect-9" type="text"
+                                             placeholder="Recipe Description" formControlName="recipe_description"></textarea>
+                                        <span class="focus-border">
+                                             <i></i>
+                                        </span>
+                                   </div><br><br>
+          
+                                   <div class="col-12">
+                                        <textarea style="width: 100%" class="effect-9" type="text"
+                                             placeholder="Recipe Description" formControlName="recipe_no_of_persons"></textarea>
+                                        <span class="focus-border">
+                                             <i></i>
+                                        </span>
+                                   </div><br><br>
+          
+          
+                                   <div class="col-12">
+                                        <select class="effect-9 form-control" formControlName="recipe_kilo_grams">
+                                             <option>Recipe In Kilo Grams</option>
+                                             <option>1 KG</option>
+                                             <option>2 KG</option>
+                                             <option>3 KG</option>
+                                             <option>4 KG</option>
+                                             <option>5 KG</option>
+                                        </select>
+                                        <span class="focus-border">
+                                             <i></i>
+                                        </span>
+                                   </div><br><br>
+          
+          
+                                   <div class="col-12 effect-9 myuploads" style="">
+                                        <label style="width: 100%" class="file1" class="effect-9 " >
+                                             Upload Recipe Images&hellip;
+                                             <input type="file" multiple  class="effect-9">
+                                        </label>
+          
+                                   </div>
+          
+                                   <br><br>
+                                  
+          
+          
+                                 <h4 class="mb-30 ">Primary Incredients</h4>
+          
+                                   <div formGroupName="ing_primary_ingredients">
+                                        <table id="myTable" class=" table order-list" cellpadding="0" cellspacing="0">
+          
+                                             <tbody>
+                                                  <tr class="paddingtop">
+                                                       <td class="col-sm-4 paddingadd">
+                                                            <input class="effect-9" type="text"
+                                                                 placeholder="Ingredients" formControlName="ing_name" />
+                                                            <span class="focus-border">
+                                                                 <i></i>
+                                                            </span>
+                                                       </td>
+          
+                                                       <td class="col-sm-4 paddingadd">
+                                                            <input class="effect-9" type="text"
+                                                                 placeholder="Quantity" formControlName="ing_qty"  />
+                                                            <span class="focus-border">
+                                                                 <i></i>
+                                                            </span>
+                                                       </td>
+          
+                                                       <td class="col-sm-4 paddingadd">
+                                                            <input class="effect-9" type="text" placeholder="Unit" formControlName="ing_unit"  />
+                                                            <span class="focus-border">
+                                                                 <i></i>
+                                                            </span>
+                                                       </td>
+          
+          
+                                                       <td class="col-sm-2"><a class="deleteRow"></a>
+          
+                                                       </td>
+                                                  </tr>
+          
+          
+          
+          
+                                             </tbody>
+                                             <tfoot>
+                                                  <tr>
+                                                       <td colspan="5" style="text-align: left;">
+                                                            <input type="button" class="btn btn-lg btn-block "
+                                                                 id="addrow" value="Add Row" />
+                                                       </td>
+                                                  </tr>
+                                                 
+                                             </tfoot>
+                                        </table>
+                                 
+                                   </div>
+          
+          
+          
+          
+          
+          
+          
+          
+                                   <h4 class="mb-30 ">Secondary Incredients</h4>
+          
+                                   <div formGroupName="ing_secondary_ingredients">
+          
+                                        <table id="myTable" class=" table order-list" cellpadding="0" cellspacing="0">
+          
+                                             <tbody>
+                                                  <tr class="paddingtop">
+                                                       <td class="col-sm-4 paddingadd">
+                                                            <input class="effect-9" type="text"
+                                                                 placeholder="Ingredients"  formControlName="ing_name"/>
+                                                            <span class="focus-border">
+                                                                 <i></i>
+                                                            </span>
+                                                       </td>
+          
+                                                       <td class="col-sm-4 paddingadd">
+                                                            <input class="effect-9" type="text"
+                                                                 placeholder="Quantity" formControlName="ing_qty"/>
+                                                            <span class="focus-border">
+                                                                 <i></i>
+                                                            </span>
+                                                       </td>
+          
+                                                       <td class="col-sm-4 paddingadd">
+                                                            <input class="effect-9" type="text" placeholder="Unit" formControlName="ing_unit" />
+                                                            <span class="focus-border">
+                                                                 <i></i>
+                                                            </span>
+                                                       </td>
+          
+          
+                                                       <td class="col-sm-2"><a class="deleteRow"></a>
+          
+                                                       </td>
+                                                  </tr>
+          
+          
+                                             </tbody>
+                                             <tfoot>
+                                                  <tr>
+                                                       <td colspan="5" style="text-align: left;">
+                                                            <input type="button" class="btn btn-lg btn-block "
+                                                                 id="addrow" value="Add Row" />
+                                                       </td>
+                                                  </tr>
+                                                  <tr>
+                                                  </tr>
+                                             </tfoot>
+                                        </table> 
+          
+                                        </div>
+                                 
+                                        <button>Submit</button>
+          
+                                   </form>
+                         </div>
+          
+                    </div>
+               </div>
+          </section>  -->

@@ -1,20 +1,53 @@
-recipename
-recipe_description
-recipe_no_of_persons
-recipe_kil_grams
-_recipe_image
+﻿{
+  "recipe_name": "",
+  "recipe_description": "",
+  "recipe_no_of_persons": "",
+  "recipe_kilo_grams": "",
+  "recipe_image": "",
+  "primary_ingredients": [
+    {
+      "ing_name": "chillis",
+      "ing_qty": 4,
+      "ing_unit": "unit"
+    },
+    {
+      "ing_name": "chillis",
+      "ing_qty": 4,
+      "ing_unit": "unit"
+    }
+  ],
+  "secondary_ingredients": [
+    {
+      "ing_name": "chillis",
+      "ing_qty": 4,
+      "ing_unit": "unit"
+    },
+    {
+      "ing_name": "chillis",
+      "ing_qty": 4,
+      "ing_unit": "unit"
+    }
+  ]
+}
 
-primary_ingredients:[
-     {
-          "ing_name":
-          "ing_quantity"
-          "ing_unit"
-     }
-]
-secondary_ingredients:[
-     {
-          "ing_name":
-          "ing_quantity"
-          "ing_unit"
-     }
-]
+    <link rel="stylesheet" href="css/animate.min.css"> 
+	 <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
+     <!-- <script src="./assets/adminDesign/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+  <!-- <script src="./assets/recipeDesign/js/bootstrap.min.js"></script> -->
+  	 <!-- <script src="./assets/recipeDesign/js/hoverIntent.js"></script>  -->
+
+       <script src="./assets/recipeDesign/js/jquery-2.2.4.min.js"></script>
+  
+  <script src="./assets/recipeDesign/js/jquery.ajaxchimp.min.js"></script>
+  <script src="./assets/recipeDesign/js/superfish.min.js"></script>
+	<script src="./assets/recipeDesign/js/main.js"></script>
+  <script src="./assets/recipeDesign/js/jquery.magnific-popup.min.js"></script>
+  <script src="./assets/recipeDesign/js/owl.carousel.min.js"></script>
+
+
+  css
+    <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> -->
+
+
+
+
