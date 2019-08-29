@@ -12,6 +12,8 @@
 
                               <div class="modal-body">
 
+                               <form [formGroup]="user_update_form" (ngSubmit)="UpdateOnSubmit();myForm.reset()" #myForm="ngForm">
+
                                    <div class="col-12 effect-9" style="width: 100%; margin:auto;">
                                         <label style="width: 100%" class="file1">
                                              Upload Profile…
@@ -22,7 +24,7 @@
                                    <br>
 
                                    <div class="col-12">
-                                        <input class="effect-9" type="text" placeholder="Full Name">
+                                        <input class="effect-9" type="text" placeholder="Full Name" formControlName="user_name">
                                         <span class="focus-border">
                                              <i></i>
                                         </span>
@@ -30,7 +32,7 @@
 
                                    <br>
                                    <div class="col-12">
-                                        <input class="effect-9" type="text" placeholder="Email">
+                                        <input class="effect-9" type="text" placeholder="Email" formControlName="email">
                                         <span class="focus-border">
                                              <i></i>
                                         </span>
@@ -65,9 +67,14 @@
                                    <br>
 
 
-                                   <button class="success-btn">Edit</button>
+                                   <button class="success-btn">Update</button>
 
-                              </div>
+                             
+                             
+                             
+                             
+                              </form> 
+                         </div>
 
                          </div>
                     </div>
@@ -75,7 +82,7 @@
 
                </div>
 
-               <div class="col-lg-6 col-sm-12">
+               <div class="col-lg-6 col-sm-12" >
                     <!--left col-->
 
 
@@ -100,10 +107,10 @@
                                    class="fa fa-dashboard fa-1x"></i></li>
                          <li class="list-group-item text-right"><span
                                    class="pull-left"><strong>NAME</strong></span> <span
-                                   class="badge">Krishna</span></li>
+                                   class="badge">{{userProfile.user_name}}</span></li>
                          <li class="list-group-item text-right"><span
                                    class="pull-left"><strong>EMAIL</strong></span> <span
-                                   class="badge">chkrish@gmail.com</span></li>
+                                   class="badge">{{userProfile.email}}</span></li>
                          <li class="list-group-item text-right"><span class="pull-left"><strong>MOBILE
                                         NUMBER</strong></span> <span class="badge">7396678358</span></li>
                          <li class="list-group-item text-right"><span

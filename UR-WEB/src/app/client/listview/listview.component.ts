@@ -11,10 +11,7 @@ export class ListviewComponent implements OnInit {
   recipesData = [];
   constructor(private uploadRecipeService:UploadRecipeService) { }
   ngOnInit() {
-    this.uploadRecipeService.getRecipes().subscribe(data=>{
-      console.log(data.recipieList);
-      this.recipesData = data.recipieList;
-    });
+   
   }
 
 

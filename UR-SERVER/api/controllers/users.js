@@ -135,15 +135,22 @@ export const login = async (req, res) => {
 
     const roleObj = await Roles.findOne({ role_code: userobj.role_code });
 
-    const defaultUrl = (userobj.role_code == roleObj.role_code) ? ("/"+roleObj.role_code) : "/recipe/";
-    
+    // console.log("userobj Role",userobj.role_code)
+    // console.log("roleObj role" ,roleObj.role_code)
+
+    const defaultUrl = (userobj.role_code == "admin") ? ("/admin") : "/recipe/";
+    console.log("defaultUrl" ,defaultUrl)
+
    
     const user_details = {
       email:userobj.email,
       user_code:userobj.user_code,
       user_name:userobj.user_name,
       role_code:userobj.role_code,
+      _id:userobj._id
     };
+
+    // console.log(user_details)
 
     console.log(user_details.role_code);
 
@@ -174,3 +181,13 @@ console.log(user_details)
     res.status(500).send(e);
   }
 };
+
+
+
+export const updateOne = async (req, res) => {
+          const { _id } = req.params;
+          const { user_name,email } = req.body;
+    return Users.findOneAndUpdate({_id},{ user_name,email })
+        .then(userData =>res.status(204).send({ success: true, message: "User Updated ", userData })).catch(error => res.status(400).send(error))
+
+}

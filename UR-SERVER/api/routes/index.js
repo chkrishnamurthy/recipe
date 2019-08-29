@@ -16,7 +16,7 @@ export const router = Router();
 router.route("/login").post(user.login);
 // Verify token 
 
-router.route("/api/*").get(token.verifyToken);
+// router.route("/api/*").get(token.verifyToken);
 
 // Menus Routes
 router.route("/api/menus").post(menu.add);
@@ -34,7 +34,10 @@ router.route("/api/users/:_id").delete(user.deleteById);
 
 router.route("/api/users/:user_code").get(user.findByUserCode);
 // router.route("/api/users/:user_code").patch(user.updateBy_MenuCode);
-router.route("/api/users/:_id").patch(user.updateBy_Id);
+// router.route("/api/users/:_id").patch(user.updateBy_Id);
+router.route("/api/users/:_id").patch(user.updateOne);
+
+
 
 
 

@@ -122,61 +122,45 @@
                <div class="modal-header">
                     <h3>Sign Up</h3>
                </div>
+               <form [formGroup]="signp_Form" (ngSubmit)="onSubmit();myForm.reset()" #myForm="ngForm">
+
                <div class="modal-body">
                     <div class="col-12">
-                         <input class="effect-9" type="text" placeholder="Full Name">
+                         <input class="effect-9" type="text" placeholder="Full Name" formControlName="user_name">
                          <span class="focus-border">
                               <i></i>
                          </span>
                     </div><br>
 
                     <div class="col-12">
-                         <input class="effect-9" type="text" placeholder="Email">
+                         <input class="effect-9" type="text" placeholder="Email" formControlName="email">
                          <span class="focus-border">
                               <i></i>
                          </span>
                     </div><br>
 
                     <div class="col-12">
-                         <input class="effect-9" type="text" placeholder="Password">
+                         <input class="effect-9" type="text" placeholder="Password" formControlName="password">
                          <span class="focus-border">
                               <i></i>
                          </span>
                     </div><br>
 
-                    <div class="col-12">
-                         <input class="effect-9" type="text" placeholder="Mobile">
-                         <span class="focus-border">
-                              <i></i>
-                         </span>
-                    </div><br>
-
-                    <div class="col-12">
-                         <select class="effect-9 form-control">
-                              <option>Gender</option>
-                              <option>Male</option>
-                              <option>Female</option>
-                              <option>Other</option>
-                         </select>
-                         <span class="focus-border">
-                              <i></i>
-                         </span>
-                    </div><br>
-
-                    <div class="col-12 effect-9" style="width: 94%; margin:auto;">
-                         <label style="width: 100%" class="file1" class="effect-9">
-                              Upload Profile&hellip;
-                              <input type="file" style="display: none;" class="effect-9">
-                         </label>
-
-                    </div>
+                    
 
                </div>
                <div class="modal-footer">
-                    <a href="" class="success-btn" data-toggle="modal" data-target="#loginModal"
-                         data-dismiss="modal">SignUp </a>
+                   <button> 
+                         <a  class="success-btn">SignUp </a>
+                    </button>
+                    <!-- data-toggle="modal" data-target="#loginModal"
+                    data-dismiss="modal" -->
+                    
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                </div>
+          
+               </form>
+
           </div>
 
      </div>

@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl,FormGroup,Validators,FormBuilder, FormArray} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { UploadRecipeService } from '../services/upload-recipe.service';
-import { first } from "rxjs/operators";
+import { first } from 'rxjs/operators';
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
+
+class IngridientsPoint {
+  "ing_name": string;
+  "ing_qty": number;
+  "ing_unit": string;
+}
 
 
 
@@ -12,40 +21,157 @@ import { first } from "rxjs/operators";
 })
 export class UploadviewComponent implements OnInit {
 
-  constructor(private fb:FormBuilder){
+  registerForm: FormGroup;
+  fileData: File = null;
+  selectedFile: ImageSnippet;
+
+  constructor(private formBuilder: FormBuilder,
+    private uploadRecipeService:UploadRecipeService){
 
   }
   ngOnInit(){
 
+    this.registerForm = this.formBuilder.group({
+      recipeName: ['', Validators.required],
+      recipeDescription: ['', Validators.required],
+      recipeWeight: ['', Validators.required],
+      recipePersons: ['', Validators.required],
+      recipefile:[''],
+      ing_primary_ingredients:this.formBuilder.array([this.formBuilder.group({
+                                                    ing_name: [''],
+                                                        ing_qty: [''],
+                                                        ing_unit:[''],
+                                                        })
+                                                    ]),
+      ing_secondary_ingredients:this.formBuilder.array([this.formBuilder.group({
+                                                      ing_name: [''],
+                                                      ing_qty: [''],
+                                                      ing_unit:[''],
+                                                      })
+                                                  ])
+   });
+
   }
 
-  profileForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: [''],
-    address: this.fb.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: ['']
-    }),
-    aliases: this.fb.array([
-      this.fb.control('')
-      
-    ])
-  });
+  fileProgress(fileInput: any) {
+    const file: File = fileInput.files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+    });
+    reader.readAsDataURL(file);
+  }
 
-  get aliases() {
-    return this.profileForm.get('aliases') as FormArray;
+  get ing_primary_ingredients() {
+    return this.registerForm.get('ing_primary_ingredients') as FormArray;
+  }
+
+  add_primary_ingredients() {
+    this.ing_primary_ingredients.push(this.formBuilder.group({
+                                                              ing_name: [''],
+                                                              ing_qty: [''],
+                                                              ing_unit:[''],
+                                                              }));
+  }
+
+  delete_primary_ingredients(index) {
+    this.ing_primary_ingredients.removeAt(index);
   }
 
 
-  addAlias() {
-    this.aliases.push(this.fb.control(''));
+
+  get ing_secondary_ingredients() {
+    return this.registerForm.get('ing_secondary_ingredients') as FormArray;
   }
 
-  onSubmit(){
-    console.log(this.profileForm.value);
+  add_secondary_ingredients() {
+    this.ing_secondary_ingredients.push(this.formBuilder.group({
+                                                              ing_name: [''],
+                                                              ing_qty: [''],
+                                                              ing_unit:[''],
+                                                              }));
   }
+
+  delete_secondary_ingredients(index) {
+    this.ing_secondary_ingredients.removeAt(index);
+  }
+
+  
+
+
+  get f() { return this.registerForm.controls; }
+
+   onSubmit() {
+     // stop here if form is invalid
+     if (this.registerForm.invalid) {
+         return;
+     }
+
+     let other ={ "ing_primary_ingredients": [
+      {
+        "ing_name": "chillis",
+        "ing_qty": 4,
+        "ing_unit": "unit"
+      },
+      {
+        "ing_name": "chillis",
+        "ing_qty": 4,
+        "ing_unit": "unit"
+      }
+    ],
+    "ing_secondary_ingredients": [
+      {
+        "ing_name": "chillis",
+        "ing_qty": 4,
+        "ing_unit": "unit"
+      },
+      {
+        "ing_name": "chillis",
+        "ing_qty": 4,
+        "ing_unit": "unit"
+      }
+    ]}
+
+    let recipeObj = {
+      "recipe_name": this.registerForm.value.recipeName,
+      "recipe_description": this.registerForm.value.recipeDescription,
+      "recipe_no_of_persons": this.registerForm.value.recipePersons,
+      "recipe_kilo_grams": this.registerForm.value.recipeWeight 
+    }
+
+    const formData = new FormData();
+
+    formData.append('recipe_img', this.selectedFile.file);
+
+    Object.keys(recipeObj).forEach(key => {
+      formData.append(key, recipeObj[key]);
+    });
+
+    Object.keys(this.registerForm.value).forEach(key => {
+      let y = formData.append(key, JSON.stringify(this.registerForm.value[key]));
+      // console.log(y);
+
+    });
+
+    // console.log("formData", formData);
+    // console.log("Revision", this.registerForm.value);
+
+    this.uploadRecipeService.add(formData)
+    .pipe(first())
+    .subscribe(
+        data => {
+            console.log("imageposted success", data);
+           //this.message= (data as any).message;
+           //close();
+        },
+        error => {
+          console.log("image post data error==>", error);
+        });
+
+   }
+
+
+
 
 
 }
@@ -55,70 +181,3 @@ export class UploadviewComponent implements OnInit {
 
 
 
-
-
-
-// ngOnInit() {
-
-//   this.uploadForm = new FormGroup({
-//     recipe_name: new FormControl(""),
-//     recipe_description:new FormControl(""),
-//     // recipe_img:new FormControl(""),
-//     recipe_no_of_persons:new FormControl(""),
-//     recipe_kilo_grams:new FormControl(""),
-
-//     ing_primary_ingredients: new FormGroup({
-//       ing_name: new FormControl(''),
-//       ing_qty: new FormControl(''),
-//       ing_unit: new FormControl(''),
-//     }),
-
-//     ing_secondary_ingredients: new FormGroup({
-//       ing_name: new FormControl(''),
-//       ing_qty: new FormControl(''),
-//       ing_unit: new FormControl(''),
-//     })
-   
-
-
-//   })
-
-//   // this.uploadForm = this.fb.group({
-
-
-
-    
-//   //   recipe_name:['',Validators.required],
-//   //   recipe_description:['',Validators.required],
-//   //   recipe_img_path:['',Validators.required],
-//   //   recipe_no_of_persons:['',Validators.required],
-//   //   recipe_kilo_grams:['',Validators.required],
-//   //   // primary_ingredients:['',Validators.required],
-//   //   // secondary_ingredients:['',Validators.required],
-//   //   // created_by:['',Validators.required],
-//   //   address: new FormGroup({
-//   //     street: new FormControl(''),
-//   //     city: new FormControl(''),
-//   //     state: new FormControl(''),
-//   //     zip: new FormControl('')
-    
-//   // })
-// }
-
-
-// onSubmit(){
-// console.log(this.uploadForm.value);
-
-// this.uploadRecipeService.add(this.uploadForm.value)
-// // .pipe(first())
-// // .subscribe(
-// //   data => {
-// //     console.log("Success");
-// //     data
-// //   },
-// //   error => {
-// //     console.log("Error", error);
-// //   }
-// // );
-
-// }

@@ -41,13 +41,12 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.email,this.password).pipe(first())
      .subscribe(
          userData => {
-            console.log("defaultUrl", userData.defaultUrl);
+            // console.log("defaultUrl", userData.defaultUrl);
             // console.log("userData", userData);
             // console.log("token", userData.token);
-            // this.router.navigate([userData.defaultUrl]);
-            // this.router.navigate(['headerview']);
-            // this.router.navigate(['uploadview']);
-            this.router.navigate(['recipe']);
+            this.router.navigate([userData.defaultUrl]);
+           
+            // this.router.navigate(['recipe']);
 
 
        },
