@@ -30,6 +30,18 @@ export const add = (req, res) => {
     created_by
   } = req.body;
 
+  // const existed_user =  Users.findOne({email,password});
+// console.log(email,password)
+  const existed_user =  Users.findOne({ email: email, password: password });
+  // console.log("Naresh",existed_user);
+
+    if (existed_user) {
+      return res.status(404).send({
+        success: false,
+        message: "Worng Credentials"
+      });
+    }
+
   return Users.create({
     user_name,
     email,

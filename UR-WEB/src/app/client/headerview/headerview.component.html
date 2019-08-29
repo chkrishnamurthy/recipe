@@ -17,20 +17,17 @@
                </div>
                <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                         <li class="menu-active"><a [routerLink]="['/recipe']">Home</a></li>
-
+                         <li class="menu-active"><a class="log" [routerLink]="['/recipe']">Home</a></li>
                          
-                         <li class="menu-active"><a [routerLink]="[{ outlets: { middlecontent: ['uploadview'] } }]">Upload Recipe </a></li>
+                         <li class="menu-active"><a class="log" [routerLink]="[{ outlets: { middlecontent: ['uploadview'] } }]" *ngIf="!login_btn">Upload Recipe </a></li>
 
+                         <li class="menu-active"><a class="log"  [routerLink]="[{ outlets: { middlecontent: ['profileview'] } }]" *ngIf="!login_btn">My Profile</a></li>
 
-                         <li class="menu-active"><a [routerLink]="[{ outlets: { middlecontent: ['profileview'] } }]">My Profile</a></li>
+                         <li class="menu-active"><a  [routerLink] (click)="logout()" class="log" *ngIf="!login_btn">Logout </a></li>
 
-                        
-
-
-
-                         <li><a class="log" href="" data-toggle="modal" data-target="#loginModal">Login </a><a
-                                   href="" class="log" data-toggle="modal" data-target="#signUpModal">SignUp
+                         <li >
+                              <a class="log" href="" data-toggle="modal" *ngIf="login_btn" data-target="#loginModal">Login </a><a
+                                   href="" class="log" data-toggle="modal"  *ngIf="login_btn" data-target="#signUpModal">SignUp
                               </a>
                          </li>
 
@@ -41,6 +38,12 @@
                </nav>
           </div>
      </div>
+
+     <div class="alert alert-danger col-lg-4 align-items-center" role="alert" *ngIf="warning_msg">
+               Please Enter Correct Details
+             </div>
+
+
 </header>
 
 <!-- start banner Area -->
@@ -80,9 +83,12 @@
                <div class="modal-header">
                     <h3>Login</h3>
                </div>
+
+               <form [formGroup]="login_Form"  >
+
                <div class="modal-body">
                     <div class="col-12">
-                         <input class="effect-9" type="text" placeholder="User Name">
+                         <input class="effect-9" type="text" placeholder="Email" formControlName="email" >
                          <span class="focus-border">
                               <i></i>
                          </span>
@@ -90,7 +96,7 @@
 
                     <br>
                     <div class="col-12">
-                         <input class="effect-9" type="text" placeholder="Password">
+                         <input class="effect-9" type="text" placeholder="Password" formControlName="password">
                          <span class="focus-border">
                               <i></i>
                          </span>
@@ -103,9 +109,13 @@
                               data-target="#signUpModal" href="">&nbsp;&nbsp;&nbsp;Sign Up</a></p>
                </div>
                <div class="modal-footer">
-                    <a href="" class="success-btn">Login</a><button type="button" class="btn btn-default"
-                         data-dismiss="modal">Close</button>
+                    <button class="success-btn" (click)="loginSubmit()"  data-dismiss="modal">Login  </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                </div>
+
+               
+
+               </form>   
           </div>
 
      </div>
@@ -122,25 +132,29 @@
                <div class="modal-header">
                     <h3>Sign Up</h3>
                </div>
-               <form [formGroup]="signp_Form" (ngSubmit)="onSubmit();myForm.reset()" #myForm="ngForm">
+               <div class="alert alert-danger col-lg-12 align-items-center" role="alert" *ngIf="existed_user" >
+                         Email Already Existed.....!
+               </div>
+
+               <form [formGroup]="signp_Form" (ngSubmit)="SignUpSubmit();myForm.reset()" #myForm="ngForm">
 
                <div class="modal-body">
                     <div class="col-12">
-                         <input class="effect-9" type="text" placeholder="Full Name" formControlName="user_name">
+                         <input required class="effect-9" type="text" placeholder="Full Name" formControlName="user_name">
                          <span class="focus-border">
                               <i></i>
                          </span>
                     </div><br>
 
                     <div class="col-12">
-                         <input class="effect-9" type="text" placeholder="Email" formControlName="email">
+                         <input required class="effect-9" type="text" placeholder="Email" formControlName="email">
                          <span class="focus-border">
                               <i></i>
                          </span>
                     </div><br>
 
                     <div class="col-12">
-                         <input class="effect-9" type="text" placeholder="Password" formControlName="password">
+                         <input required class="effect-9" type="text" placeholder="Password" formControlName="password">
                          <span class="focus-border">
                               <i></i>
                          </span>
@@ -150,11 +164,10 @@
 
                </div>
                <div class="modal-footer">
-                   <button> 
-                         <a  class="success-btn">SignUp </a>
+                   <button class="success-btn"> 
+                         SignUp
                     </button>
-                    <!-- data-toggle="modal" data-target="#loginModal"
-                    data-dismiss="modal" -->
+                   
                     
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                </div>
@@ -239,4 +252,8 @@
 
      </div>
 </div>
+
+
+
+     <!-- </div> -->
 

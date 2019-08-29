@@ -101,8 +101,9 @@ export class UploadviewComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
+
+
    onSubmit() {
-     // stop here if form is invalid
      if (this.registerForm.invalid) {
          return;
      }
@@ -143,35 +144,28 @@ export class UploadviewComponent implements OnInit {
 
     formData.append('recipe_img', this.selectedFile.file);
 
+
     Object.keys(recipeObj).forEach(key => {
       formData.append(key, recipeObj[key]);
     });
 
-    Object.keys(this.registerForm.value).forEach(key => {
-      let y = formData.append(key, JSON.stringify(this.registerForm.value[key]));
-      // console.log(y);
 
+    Object.keys(this.registerForm.value).forEach(key => {
+       formData.append(key, JSON.stringify(this.registerForm.value[key]));
     });
 
-    // console.log("formData", formData);
-    // console.log("Revision", this.registerForm.value);
 
     this.uploadRecipeService.add(formData)
     .pipe(first())
     .subscribe(
         data => {
             console.log("imageposted success", data);
-           //this.message= (data as any).message;
-           //close();
         },
         error => {
           console.log("image post data error==>", error);
         });
 
    }
-
-
-
 
 
 }
