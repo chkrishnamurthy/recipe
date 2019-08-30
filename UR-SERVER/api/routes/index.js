@@ -64,4 +64,6 @@ router.route("/api/upload/recipe").get(recipes.list)
 router.route("/api/publish/recipe/:_id").patch(recipes.publish);
 router.route("/api/published_list/recipe").get(recipes.published_list)
 
+router.route("/api/recipe/single/:_id").get(recipes.singleRecipe)
+
 

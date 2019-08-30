@@ -57,4 +57,17 @@ export const published_list = (req, res) => {
                                      })
                    ).catch(error => res.status(STATUS_CODE.NOT_FOUND)
                                        .send(error));
-   };
+};
+
+export const singleRecipe = (req, res) => {
+
+    const { _id } = req.params
+
+     Recipe.findById(_id).then(recipeItem => res.status(STATUS_CODE.OK)
+                                        .send({
+                                               success: true,
+                                               recipeItem
+                                     })
+                   ).catch(error => res.status(STATUS_CODE.NOT_FOUND)
+                          .send(error));
+};

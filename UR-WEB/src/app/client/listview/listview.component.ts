@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { UploadRecipeService} from '../services/upload-recipe.service';
+import { SingleRecipeService } from '../services/single-recipe.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-listview',
@@ -11,18 +13,23 @@ export class ListviewComponent implements OnInit {
   recipesData = [];
   serverUrl = "http://127.0.0.1:5003";
 
-  constructor(private uploadRecipeService:UploadRecipeService) {
+
+  constructor(private uploadRecipeService:UploadRecipeService,private data:SingleRecipeService) {
     this.uploadRecipeService.getPublished_list().subscribe(published_list =>{
-      console.log(published_list.recipieList);
       this.recipesData = published_list.recipieList;
     })
    }
 
 
   ngOnInit() {
-   
   }
 
+
+  selectedItem(_id){
+    this.data.select_id(_id);
+  }
+ 
+  
 
 
 }
