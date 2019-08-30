@@ -9,7 +9,16 @@ import { UploadRecipeService} from '../services/upload-recipe.service';
 export class ListviewComponent implements OnInit {
 
   recipesData = [];
-  constructor(private uploadRecipeService:UploadRecipeService) { }
+  serverUrl = "http://127.0.0.1:5003";
+
+  constructor(private uploadRecipeService:UploadRecipeService) {
+    this.uploadRecipeService.getPublished_list().subscribe(published_list =>{
+      console.log(published_list.recipieList);
+      this.recipesData = published_list.recipieList;
+    })
+   }
+
+
   ngOnInit() {
    
   }

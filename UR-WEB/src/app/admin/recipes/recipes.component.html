@@ -45,12 +45,19 @@
            <td>{{i+1}}</td>
            <td>{{recipe.recipe_name}}</td>
            <td>{{recipe.recipe_kilo_grams}}</td>
+           <td>{{recipe.is_published}}</td>
+
            <!-- <td>{{recipe.menu_url}}</td>
            <td>{{recipe.menu_description}}</td>
            <td>{{recipe.created_by}}</td> -->
-   
-           <td>
-             <a  class="edit" ><i class="material-icons">&#xE254;</i></a>
+           <!-- *ngIf="takingfalse" -->
+           <td>       
+             <a  class="edit" (click)="publish(recipe._id,publish_Done_Not)" >
+               <input type="checkbox" style="display: none;" #publish_Done_Not value={{recipe.is_published}}/>
+               <i class="material-icons eyecolor" >remove_red_eye</i>
+
+              </a>
+             <!-- <a  class="edit" ><i class="material-icons">&#xE254;</i></a> -->
              <a  class="delete"   ><i class="material-icons" title="Delete" >&#xE872;</i></a>
            </td>
          </tr>

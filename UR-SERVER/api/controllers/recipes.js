@@ -40,3 +40,21 @@ export const list = (req, res) => {
                    ).catch(error => res.status(STATUS_CODE.NOT_FOUND)
                                        .send(error));
    };
+
+   export const publish = async (req, res) => {
+     const { _id } = req.params;
+     const { is_published } = req.body;
+//   console.log("is_published",is_published)
+     return Recipe.findOneAndUpdate({_id},{ is_published })
+   .then(userData =>res.status(204).send({ success: true, message: "Recipe Published ", userData })).catch(error => res.status(400).send(error))
+}
+
+export const published_list = (req, res) => {
+     Recipe.find({is_published :"yes"}).then(recipieList => res.status(STATUS_CODE.OK)
+                                        .send({
+                                               success: true,
+                                               recipieList
+                                     })
+                   ).catch(error => res.status(STATUS_CODE.NOT_FOUND)
+                                       .send(error));
+   };

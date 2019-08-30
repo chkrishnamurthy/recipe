@@ -22,6 +22,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
+// for images getting
+
+app.use('/',express.static("assets/uploads"))
+
+
 //Allow header for cross origin
 app.use(function(req,res,next){
      res.header("Access-Control-Allow-Origin","*");

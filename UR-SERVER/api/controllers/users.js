@@ -132,8 +132,6 @@ return res.status(204).send(updatedRole);
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
-  // console.log(email, password);
-
   try {
     const userobj = await Users.findOne({ email: email, password: password });
     if (!userobj) {

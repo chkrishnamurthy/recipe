@@ -12,10 +12,11 @@ export class UploadRecipeService {
   }
 
   url = "http://127.0.0.1:5003/api/upload/recipe";
+  published_list = "http://127.0.0.1:5003/api/published_list/recipe";
   
 
-  getAll() {
-    return this.http.get<any[]>(this.url);
+  getPublished_list():Observable<any> {
+    return this.http.get(this.published_list);
   }
 
   add(recipe) {
