@@ -23,13 +23,12 @@ export class HeaderviewComponent implements OnInit {
 
   constructor(private fb:FormBuilder,private headerService:HeaderService,private loginService:LoginService, private route: ActivatedRoute, private router: Router) {
     this.loginChecking();
-    
    }
 
    loginChecking(){
     if (this.loginService.currentUserValue) {
     this.login_btn = false;
-    // this.reload = true;
+    this.router.navigate(['/recipe']);
        }
    }
 
@@ -100,7 +99,7 @@ export class HeaderviewComponent implements OnInit {
   logout(){
     localStorage.removeItem('currentUser');
     this.login_btn  = true;
-
+    this.router.navigate(['/recipe']);
   }
   
 

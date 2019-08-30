@@ -7,7 +7,9 @@ import { LoginService } from '../../account/service/login.service';
   providedIn: "root"
 })
 export class UploadRecipeService {
-  constructor(private http: HttpClient,private loginService:LoginService ){}
+  
+  constructor(private http: HttpClient,private loginService:LoginService ){
+  }
 
   url = "http://127.0.0.1:5003/api/upload/recipe";
   
@@ -17,9 +19,11 @@ export class UploadRecipeService {
   }
 
   add(recipe) {
-    let currentUser = this.loginService.currentUserValue;
-    
-    recipe.append("created_by",currentUser.username);
+    let currentUser = this.loginService.currentUserValue.user_details.user_name;
+
+    recipe.append("created_by",currentUser);
+    recipe.append("is_published","no");
+
     const options = {} as any
     return this.http.post(this.url, recipe, options);
   }

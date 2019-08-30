@@ -7,6 +7,7 @@ import { MenucontentComponent } from './menucontent/menucontent.component';
 import { RolescontentComponent } from './rolescontent/rolescontent.component';
 import { UserscontentComponent } from './userscontent/userscontent.component';
 import { MenuaccessComponent } from './menuaccess/menuaccess.component';
+import { RecipesComponent } from './recipes/recipes.component';
 
 const routes: Routes = [
   { path:'admin', component:AdminComponent,
@@ -16,7 +17,8 @@ const routes: Routes = [
             { path:"roles",  component:RolescontentComponent,  outlet:"display" },
             { path:"users",  component:UserscontentComponent,  outlet:"display" },
             { path:"menuaccess", component:MenuaccessComponent, outlet:"display" },
-            {  path:"menus",   component:MenucontentComponent,   outlet:"display"} 
+            {  path:"menus",   component:MenucontentComponent,   outlet:"display"} ,
+            {  path:"recipe",   component:RecipesComponent,   outlet:"display"} 
           ]
  },
 

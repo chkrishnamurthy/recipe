@@ -1,0 +1,81 @@
+<div class="container-fluid">
+     <div class="row">
+   <h1 class="h3 mb-4 text-gray-800">&nbsp; Menus Table</h1>&nbsp;&nbsp;
+   <div class="alert alert-primary col-sm-6" role="alert" *ngIf="success_Message" >
+    One Menu Record Submitted Successfully....!
+   </div>
+   
+   <div class="alert alert-danger col-sm-6" role="alert"  *ngIf ="deleted_message">
+       Deleted Successfully
+      </div>
+   
+   
+   </div>     
+   </div>
+   
+   <div class="container">
+     <!-- <div class="row"> -->
+   <div class="table-wrapper">
+     
+     <div class="table-title">
+       <div class="row">
+         <div class="col-sm-4">
+           <h2> <b>Menu List</b></h2>
+         </div>
+        
+       </div>
+     </div>
+     <table class="table table-striped table-hover table-responsive-sm">
+       <thead>
+         <tr>
+          
+           <th>S.No</th>
+           <th>Recipe Name</th>
+           <th>Recipe In KiloGrams</th>
+           <!-- <th>Menu Url</th>
+           <th>Menu Description</th>
+           <th>Menu Created By</th> -->
+           <th>Actions</th>
+   
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let recipe of recipesList;index as i">
+           
+           <td>{{i+1}}</td>
+           <td>{{recipe.recipe_name}}</td>
+           <td>{{recipe.recipe_kilo_grams}}</td>
+           <!-- <td>{{recipe.menu_url}}</td>
+           <td>{{recipe.menu_description}}</td>
+           <td>{{recipe.created_by}}</td> -->
+   
+           <td>
+             <a  class="edit" ><i class="material-icons">&#xE254;</i></a>
+             <a  class="delete"   ><i class="material-icons" title="Delete" >&#xE872;</i></a>
+           </td>
+         </tr>
+       
+   
+   
+       </tbody>
+     </table>
+     <div class="clearfix">
+       <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+       <ul class="pagination">
+         <li class="page-item "><a href="#" class="page-link">Previous</a></li>
+         <li class="page-item"><a href="#" class="page-link">1</a></li>
+         <li class="page-item"><a href="#" class="page-link">2</a></li>
+         <li class="page-item active"><a href="#" class="page-link">3</a></li>
+         <li class="page-item"><a href="#" class="page-link">4</a></li>
+         <li class="page-item"><a href="#" class="page-link">5</a></li>
+         <li class="page-item"><a href="#" class="page-link">Next</a></li>
+       </ul>
+     </div>
+   </div>
+   <!-- </div> -->
+   </div>
+   
+   
+   <!-- Edit Modal HTML -->
+   
+   

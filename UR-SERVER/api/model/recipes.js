@@ -18,6 +18,7 @@ const recipe_Schema = new mongoose.Schema({
        type:String
   },
 
+
   recipe_name: {
     type: String
   },
@@ -51,6 +52,10 @@ const recipe_Schema = new mongoose.Schema({
     type: Date,
     default: Date.now()
   },
+
+  is_published:{
+    type:String
+  }
 
 });
 

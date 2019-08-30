@@ -12,10 +12,11 @@ import { RolescontentComponent } from './rolescontent/rolescontent.component';
 import { UserscontentComponent } from './userscontent/userscontent.component';
 import { MenuaccessComponent } from './menuaccess/menuaccess.component';
 import { FormsModule } from '@angular/forms';
+import { RecipesComponent } from './recipes/recipes.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, HeaderComponent, SidebarComponent, MenucontentComponent, RolescontentComponent, UserscontentComponent, MenuaccessComponent ],
+  declarations: [AdminComponent, HeaderComponent, SidebarComponent, MenucontentComponent, RolescontentComponent, UserscontentComponent, MenuaccessComponent, RecipesComponent ],
   imports: [
     CommonModule,
     HttpClientModule,

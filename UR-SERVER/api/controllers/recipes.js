@@ -10,13 +10,15 @@ export const create = (req,res)=>{
           recipe_kilo_grams,
           ing_primary_ingredients,
           ing_secondary_ingredients,
-          created_by }= req.body;
+          created_by,
+          is_published
+               }= req.body;
 
           let primary_ingredients = JSON.parse(ing_primary_ingredients);
           let secondary_ingredients = JSON.parse(ing_secondary_ingredients);
 
           let recipe_img_path = req.file.filename;
-           Recipe.create( { recipe_name,recipe_description,recipe_img_path,recipe_no_of_persons,recipe_kilo_grams,primary_ingredients,secondary_ingredients,created_by} ) .then(recipeData => res.status(STATUS_CODE.CREATED)
+           Recipe.create( { recipe_name,recipe_description,recipe_img_path,recipe_no_of_persons,recipe_kilo_grams,primary_ingredients,secondary_ingredients,created_by,is_published} ) .then(recipeData => res.status(STATUS_CODE.CREATED)
      .send({
              success: true,
              message: "success, Created",
