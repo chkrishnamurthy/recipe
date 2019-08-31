@@ -1,6 +1,7 @@
-import { Component, OnInit, Input,ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SingleRecipeService } from '../services/single-recipe.service';
 import { first } from "rxjs/operators";
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -11,17 +12,22 @@ import { first } from "rxjs/operators";
 })
 export class DetailviewComponent implements OnInit {
 
-  constructor(private data:SingleRecipeService) {
+  current_Selected_Recipe_Id;
+  constructor(private data:SingleRecipeService,private route:ActivatedRoute) {
+    this.route.queryParams
+    .subscribe(params => {
+     this.current_Selected_Recipe_Id = params._id;
+    });
    }
 
-   current_Selected_Recipe_Id;
+
    singleRecipeData = {};
    serverUrl = "http://127.0.0.1:5003";
 
 
   ngOnInit(){
-  localStorage.setItem("currentSelectedRecipe",this.data.selectedItem);
-    this.current_Selected_Recipe_Id =  localStorage.getItem("currentSelectedRecipe");
+  // localStorage.setItem("currentSelectedRecipe",this.data.selectedItem);
+    // this.current_Selected_Recipe_Id =  localStorage.getItem("currentSelectedRecipe");
     this.getData();
   }
 
@@ -30,28 +36,15 @@ export class DetailviewComponent implements OnInit {
     .pipe(first())
      .subscribe(
          singleData => {
-          console.log("SingleData",singleData);
+          // console.log("SingleData",singleData);
           this.singleRecipeData=singleData.recipeItem;
-          console.log(this.singleRecipeData);
-
+          // console.log(this.singleRecipeData);
        },
          error => {
             console.log("ERROR user data:", error);
          });
   }
 
-
-
-
-
-
-
-  
-
-  
-
-
-  
 
 
 }

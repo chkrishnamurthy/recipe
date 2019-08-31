@@ -28,7 +28,7 @@ export class HeaderviewComponent implements OnInit {
    loginChecking(){
     if (this.loginService.currentUserValue) {
     this.login_btn = false;
-    this.router.navigate(['/recipe']);
+    // this.router.navigate(['/recipe']);
        }
    }
 

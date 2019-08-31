@@ -8,9 +8,11 @@ import { RolescontentComponent } from './rolescontent/rolescontent.component';
 import { UserscontentComponent } from './userscontent/userscontent.component';
 import { MenuaccessComponent } from './menuaccess/menuaccess.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { AuthGuard } from '../account/helpers';
 
 const routes: Routes = [
   { path:'admin', component:AdminComponent,
+  canActivate:[AuthGuard],
   children:[{ path:"", component:HeaderComponent, outlet:"header" },
             { path:"",  component:SidebarComponent, outlet:"sidebar"  },
             { path:"",  component:MenucontentComponent,  outlet:"display" },
@@ -39,6 +41,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[AuthGuard]
 })
 export class AdminRoutingModule { }

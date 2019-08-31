@@ -9,12 +9,7 @@ import { HttpClient,HttpHeaders } from "@angular/common/http";
 export class SingleRecipeService {
 
   constructor(private http:HttpClient) { }
-  selectedItem;
   url = "http://127.0.0.1:5003/api/recipe/single";
-
-  select_id(message: string) {
-    this.selectedItem = message;
-  }
 
 
   getselectedRecipe(_id){

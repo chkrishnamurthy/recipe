@@ -12,7 +12,7 @@
                     <img   src='{{serverUrl}}/{{recipe.recipe_img_path}}'  class="img-fluid imagestatic"  />
                     <div class="single-menu">
                          <div class="title-div justify-content-between d-flex">
-                              <h4><a (click)="selectedItem(recipe._id)" [routerLink]="[{ outlets: { middlecontent: ['detailview'] } }]"   >{{recipe.recipe_name}}</a></h4>
+                              <h4><a  [routerLink]="[{ outlets: { middlecontent: ['detailview'] } }] " [queryParams]='{_id:recipe._id}'  >{{recipe.recipe_name}}</a></h4>
                               
                          </div>
                     </div>

@@ -57,7 +57,7 @@ export class UserscontentComponent implements OnInit {
   getRolesdata() {
     this.usersService.getRoles().subscribe(data => {
       this.roles = data.RolesList;
-      this.roles.splice(0,1)
+      // this.roles.splice(0,1)
       // console.log(this.roles);
     });
   }
